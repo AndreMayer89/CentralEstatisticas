@@ -19,7 +19,7 @@ namespace CentralEstatisticas.Business
                 IndicadoresSistemaEntidade registro = new IndicadoresSistemaEntidade { Sistema = sistema };
                 try
                 {
-                    var resultado = new ApiIndicadoresRepositorio(sistema.UrlBase, sistema.RotaApiIndicadores).Executar(dataInicio, dataFim);
+                    var resultado = new ApiIndicadoresRepositorio(ObterUrlAmbiente(sistema), sistema.RotaApiIndicadores).Executar(dataInicio, dataFim);
                     if (resultado.Sucesso)
                     {
                         registro.ListaIndicadores = resultado.Indicadores.Select(i => new IndicadorEntidade
@@ -36,12 +36,18 @@ namespace CentralEstatisticas.Business
                 }
                 catch (Exception e)
                 {
-                    registro.TipoErro = TipoErro.Tratado;
+                    registro.TipoErro = TipoErro.NaoTratado;
                     registro.MensagemErro = e.Message;
                 }
                 lista.Add(registro);
             }
             return lista;
+        }
+
+        private string ObterUrlAmbiente(SistemaEntidade sistema)
+        {
+            //TODO [André] - Implementar retorno de URL por ambiente (DEV, HOM e PROD)
+            return sistema.UrlBase;
         }
     }
 }

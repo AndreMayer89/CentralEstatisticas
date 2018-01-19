@@ -12,30 +12,62 @@ namespace CentralEstatisticas.Repositorios
                 new SistemaEntidade
                 {
                     Id = 1,
-                    Nome = "Localiza - Operações - Monitoramento",
+                    Empresa = "Localiza",
+                    Area = "Operações",
+                    Nome = "Monitoramento",
                     UrlBase = "https://wapps.localiza.com/GestaoFrotasMonitoramento",
-                    RotaApiIndicadores = "api/indicadores/obter"
+                    UrlBaseHom = "https://wapps-h.localiza.com/GestaoFrotasMonitoramento",
+                    UrlBaseDev = "https://wapps-d.localiza.com/GestaoFrotasMonitoramento",
+                    RotaApiIndicadores = "api/indicadores/obter",
+                    Ativo = true
                 },
                 new SistemaEntidade
                 {
                     Id = 2,
-                    Nome = "Localiza - Operações - Compra Peça",
+                    Empresa = "Localiza",
+                    Area = "Operações",
+                    Nome = "Compra Peça",
                     UrlBase = "https://wapps.localiza.com/Manutencao/OP.ManutencaoCarro.CompraPecas/",
-                    RotaApiIndicadores = "api/indicadores/obter"
+                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/OP.ManutencaoCarro.CompraPecas/",
+                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/OP.ManutencaoCarro.CompraPecas/",
+                    RotaApiIndicadores = "api/indicadores/obter",
+                    Ativo = true
                 },
                 new SistemaEntidade
                 {
                     Id = 3,
-                    Nome = "Localiza - Operações - Análise Orçamento",
+                    Empresa = "Localiza",
+                    Area = "Operações",
+                    Nome = "Análise Orçamento",
                     UrlBase = "https://wapps.localiza.com/Manutencao/OP.ManutencaoCarro.AnaliseOrcamento",
-                    RotaApiIndicadores = "api/indicadores/obter"
+                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/OP.ManutencaoCarro.AnaliseOrcamento",
+                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/OP.ManutencaoCarro.AnaliseOrcamento",
+                    RotaApiIndicadores = "api/indicadores/obter",
+                    Ativo = true
                 },
                 new SistemaEntidade
                 {
                     Id = 4,
-                    Nome = "Localiza - Operações - Administração Fornecedor",
+                    Empresa = "Localiza",
+                    Area = "Operações",
+                    Nome = "Administração Fornecedor",
                     UrlBase = "https://wapps.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor",
-                    RotaApiIndicadores = "api/indicadores/obter"
+                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor",
+                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor",
+                    RotaApiIndicadores = "api/indicadores/obter",
+                    Ativo = true
+                },
+                new SistemaEntidade
+                {
+                    Id = 5,
+                    Empresa = "Localiza",
+                    Area = "Operações",
+                    Nome = "Núcleo Manutenção",
+                    UrlBase = "https://wapps.localiza.com/Manutencao/NucleoManutencao",
+                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/NucleoManutencao",
+                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/NucleoManutencao",
+                    RotaApiIndicadores = "api/indicadores/obter",
+                    Ativo = true
                 }
             };
         }
