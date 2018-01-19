@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\IndicadorDto.cs" />
+    <Compile Include="Dto\ResultadoIndicadoresDto.cs" />
+    <Compile Include="Dto\SaidaWebApiBaseDto.cs" />
+    <Compile Include="IndicadorEntidade.cs" />
+    <Compile Include="IndicadoresSistemaEntidade.cs" />
     <Compile Include="SistemaEntidade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
