@@ -45,6 +45,8 @@
     <Compile Include="Dto\SaidaWebApiBaseDto.cs" />
     <Compile Include="IndicadorEntidade.cs" />
     <Compile Include="IndicadoresSistemaEntidade.cs" />
+    <Compile Include="IndicadoresTecnicosSistemaEntidade.cs" />
+    <Compile Include="IndicadorTecnicoEntidade.cs" />
     <Compile Include="SistemaEntidade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

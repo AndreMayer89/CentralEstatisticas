@@ -16,32 +16,37 @@ namespace CentralEstatisticas.Business
             var listaSistemas = new SistemaRepositorio().ListarTodos();
             foreach (var sistema in listaSistemas)
             {
-                IndicadoresSistemaEntidade registro = new IndicadoresSistemaEntidade { Sistema = sistema };
-                try
-                {
-                    var resultado = new ApiIndicadoresRepositorio(ObterUrlAmbiente(sistema), sistema.RotaApiIndicadores).Executar(dataInicio, dataFim);
-                    if (resultado.Sucesso)
-                    {
-                        registro.ListaIndicadores = resultado.Indicadores.Select(i => new IndicadorEntidade
-                        {
-                            Nome = i.Nome,
-                            Valor = i.Valor
-                        }).ToList();
-                    }
-                    else
-                    {
-                        registro.TipoErro = TipoErro.Tratado;
-                        registro.MensagemErro = resultado.MensagemErro;
-                    }
-                }
-                catch (Exception e)
-                {
-                    registro.TipoErro = TipoErro.NaoTratado;
-                    registro.MensagemErro = e.Message;
-                }
-                lista.Add(registro);
+                lista.Add(ObterIndicador(dataInicio, dataFim, sistema));
             }
             return lista;
+        }
+
+        public IndicadoresSistemaEntidade ObterIndicador(DateTime dataInicio, DateTime dataFim, SistemaEntidade sistema)
+        {
+            IndicadoresSistemaEntidade registro = new IndicadoresSistemaEntidade { Sistema = sistema };
+            try
+            {
+                var resultado = new ApiIndicadoresRepositorio(ObterUrlAmbiente(sistema), sistema.RotaApiIndicadores).Executar(dataInicio, dataFim);
+                if (resultado.Sucesso)
+                {
+                    registro.ListaIndicadores = resultado.Indicadores.Select(i => new IndicadorEntidade
+                    {
+                        Nome = i.Nome,
+                        Valor = i.Valor
+                    }).ToList();
+                }
+                else
+                {
+                    registro.TipoErro = TipoErro.Tratado;
+                    registro.MensagemErro = resultado.MensagemErro;
+                }
+            }
+            catch (Exception e)
+            {
+                registro.TipoErro = TipoErro.NaoTratado;
+                registro.MensagemErro = e.Message;
+            }
+            return registro;
         }
 
         private string ObterUrlAmbiente(SistemaEntidade sistema)

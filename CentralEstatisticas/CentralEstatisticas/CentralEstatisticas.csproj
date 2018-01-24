@@ -160,6 +160,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\BaseApiController.cs" />
+    <Compile Include="Areas\Api\Controllers\SistemaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -190,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Api\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
