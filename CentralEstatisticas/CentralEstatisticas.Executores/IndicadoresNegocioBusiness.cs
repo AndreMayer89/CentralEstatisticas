@@ -4,6 +4,7 @@ using CentralEstatisticas.Repositorios.Indicadores;
 using CentralEstatisticas.Util.Enum;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
 namespace CentralEstatisticas.Business
@@ -19,6 +20,11 @@ namespace CentralEstatisticas.Business
                 lista.Add(ObterIndicador(dataInicio, dataFim, sistema));
             }
             return lista;
+        }
+
+        public IndicadoresSistemaEntidade ObterIndicador(DateTime dataInicio, DateTime dataFim, int idSistema)
+        {
+            return ObterIndicador(dataInicio, dataFim, new SistemaRepositorio().ObterSistema(idSistema));
         }
 
         public IndicadoresSistemaEntidade ObterIndicador(DateTime dataInicio, DateTime dataFim, SistemaEntidade sistema)
@@ -51,7 +57,16 @@ namespace CentralEstatisticas.Business
 
         private string ObterUrlAmbiente(SistemaEntidade sistema)
         {
-            //TODO [André] - Implementar retorno de URL por ambiente (DEV, HOM e PROD)
+            //TODO [André] - Refactoring
+            string ambiente = ConfigurationManager.AppSettings["Ambiente"];
+            if (ambiente == "DESENVOLVIMENTO")
+            {
+                return sistema.UrlBaseDev;
+            }
+            if (ambiente == "HOMOLOGACAO")
+            {
+                return sistema.UrlBaseHom;
+            }
             return sistema.UrlBase;
         }
     }

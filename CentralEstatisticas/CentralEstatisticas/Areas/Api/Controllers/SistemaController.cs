@@ -1,13 +1,15 @@
-﻿using System.Web.Http;
+﻿using CentralEstatisticas.Business;
+using System;
+using System.Web.Http;
 
 namespace CentralEstatisticas.Areas.Api.Controllers
 {
     [RoutePrefix("api/indicadores")]
-    public class SistemaController
+    public class SistemaController : BaseApiController
     {
         [HttpGet]
         [Route("todos")]
-        public void ObterIndicadores(int idSistema)
+        public void ObterIndicadores(int idSistema, DateTime dataInicio, DateTime dataFim)
         {
 
         }
@@ -21,9 +23,9 @@ namespace CentralEstatisticas.Areas.Api.Controllers
 
         [HttpGet]
         [Route("negocio")]
-        public void ObterIndicadoresNegocio(int idSistema)
+        public object ObterIndicadoresNegocio(int idSistema, DateTime dataInicio, DateTime dataFim)
         {
-
+            return new IndicadoresNegocioBusiness().ObterIndicador(dataInicio, dataFim, idSistema);
         }
     }
 }

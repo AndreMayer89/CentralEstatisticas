@@ -1,5 +1,6 @@
 ﻿using CentralEstatisticas.Entidades;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CentralEstatisticas.Repositorios
 {
@@ -15,9 +16,9 @@ namespace CentralEstatisticas.Repositorios
                     Empresa = "Localiza",
                     Area = "Operações",
                     Nome = "Monitoramento",
-                    UrlBase = "https://wapps.localiza.com/GestaoFrotasMonitoramento",
-                    UrlBaseHom = "https://wapps-h.localiza.com/GestaoFrotasMonitoramento",
-                    UrlBaseDev = "https://wapps-d.localiza.com/GestaoFrotasMonitoramento",
+                    UrlBase = "https://wapps.localiza.com/GestaoFrotasMonitoramento/",
+                    UrlBaseHom = "https://wapps-h.localiza.com/GestaoFrotasMonitoramento/",
+                    UrlBaseDev = "https://wapps-d.localiza.com/GestaoFrotasMonitoramento/",
                     RotaApiIndicadores = "api/indicadores/obter",
                     Ativo = true
                 },
@@ -39,9 +40,9 @@ namespace CentralEstatisticas.Repositorios
                     Empresa = "Localiza",
                     Area = "Operações",
                     Nome = "Análise Orçamento",
-                    UrlBase = "https://wapps.localiza.com/Manutencao/OP.ManutencaoCarro.AnaliseOrcamento",
-                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/OP.ManutencaoCarro.AnaliseOrcamento",
-                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/OP.ManutencaoCarro.AnaliseOrcamento",
+                    UrlBase = "https://wapps.localiza.com/Manutencao/OP.ManutencaoCarro.AnaliseOrcamento/",
+                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/OP.ManutencaoCarro.AnaliseOrcamento/",
+                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/OP.ManutencaoCarro.AnaliseOrcamento/",
                     RotaApiIndicadores = "api/indicadores/obter",
                     Ativo = true
                 },
@@ -51,9 +52,9 @@ namespace CentralEstatisticas.Repositorios
                     Empresa = "Localiza",
                     Area = "Operações",
                     Nome = "Administração Fornecedor",
-                    UrlBase = "https://wapps.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor",
-                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor",
-                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor",
+                    UrlBase = "https://wapps.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor/",
+                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor/",
+                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor/",
                     RotaApiIndicadores = "api/indicadores/obter",
                     Ativo = true
                 },
@@ -63,13 +64,18 @@ namespace CentralEstatisticas.Repositorios
                     Empresa = "Localiza",
                     Area = "Operações",
                     Nome = "Núcleo Manutenção",
-                    UrlBase = "https://wapps.localiza.com/Manutencao/NucleoManutencao",
-                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/NucleoManutencao",
-                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/NucleoManutencao",
+                    UrlBase = "https://wapps.localiza.com/Manutencao/NucleoManutencao/",
+                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/NucleoManutencao/",
+                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/NucleoManutencao/",
                     RotaApiIndicadores = "api/indicadores/obter",
                     Ativo = true
                 }
             };
+        }
+
+        public SistemaEntidade ObterSistema(int idSistema)
+        {
+            return ListarTodos().FirstOrDefault(s => s.Id == idSistema);
         }
     }
 }
