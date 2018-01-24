@@ -3,7 +3,6 @@ using CentralEstatisticas.Repositorios;
 using CentralEstatisticas.Repositorios.Indicadores;
 using CentralEstatisticas.Util.Enum;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 
@@ -11,23 +10,12 @@ namespace CentralEstatisticas.Business
 {
     public class IndicadoresNegocioBusiness
     {
-        public List<IndicadoresSistemaEntidade> ListarIndicadores(DateTime dataInicio, DateTime dataFim)
+        public IndicadoresSistemaEntidade ObterIndicadoresNoPeriodo(DateTime dataInicio, DateTime dataFim, int idSistema)
         {
-            var lista = new List<IndicadoresSistemaEntidade>();
-            var listaSistemas = new SistemaRepositorio().ListarTodos();
-            foreach (var sistema in listaSistemas)
-            {
-                lista.Add(ObterIndicador(dataInicio, dataFim, sistema));
-            }
-            return lista;
+            return ObterIndicadoresNoPeriodo(dataInicio, dataFim, new SistemaRepositorio().ObterSistema(idSistema));
         }
 
-        public IndicadoresSistemaEntidade ObterIndicador(DateTime dataInicio, DateTime dataFim, int idSistema)
-        {
-            return ObterIndicador(dataInicio, dataFim, new SistemaRepositorio().ObterSistema(idSistema));
-        }
-
-        public IndicadoresSistemaEntidade ObterIndicador(DateTime dataInicio, DateTime dataFim, SistemaEntidade sistema)
+        public IndicadoresSistemaEntidade ObterIndicadoresNoPeriodo(DateTime dataInicio, DateTime dataFim, SistemaEntidade sistema)
         {
             IndicadoresSistemaEntidade registro = new IndicadoresSistemaEntidade { Sistema = sistema };
             try
