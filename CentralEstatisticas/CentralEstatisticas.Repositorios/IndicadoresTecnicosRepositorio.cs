@@ -1,6 +1,7 @@
 ﻿using CentralEstatisticas.Entidades;
 using System.Collections.Generic;
 using CentralEstatisticas.Util.Conexao;
+using System;
 
 namespace CentralEstatisticas.Repositorios
 {
@@ -10,7 +11,7 @@ namespace CentralEstatisticas.Repositorios
         {
         }
 
-        public IEnumerable<IndicadorTecnicoEntidade> ListarIndicadores()
+        public IEnumerable<IndicadorTecnicoEntidade> ListarIndicadores(int id)
         {
             return Query<IndicadorTecnicoEntidade>("SELECT * FROM indicador_tecnico");
         }

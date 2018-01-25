@@ -1,4 +1,4 @@
-﻿namespace CentralEstatisticas.Entidades.Dto
+﻿namespace CentralEstatisticas.Entidades.Dto.IndicadorNegocio
 {
     public class IndicadorDto
     {

@@ -40,12 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dto\IndicadorDto.cs" />
-    <Compile Include="Dto\ResultadoIndicadoresDto.cs" />
+    <Compile Include="Dto\IndicadorNegocio\IndicadorDto.cs" />
+    <Compile Include="Dto\IndicadorNegocio\ResultadoIndicadoresDto.cs" />
+    <Compile Include="Dto\IndicadorTecnico\IndicadorDto.cs" />
     <Compile Include="Dto\SaidaWebApiBaseDto.cs" />
     <Compile Include="IndicadorEntidade.cs" />
     <Compile Include="IndicadoresSistemaEntidade.cs" />
-    <Compile Include="IndicadoresTecnicosSistemaEntidade.cs" />
+    <Compile Include="Dto\IndicadorTecnico\ResultadoIndicadoresDto.cs" />
     <Compile Include="IndicadorTecnicoEntidade.cs" />
     <Compile Include="SistemaEntidade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,5 +57,6 @@
       <Name>CentralEstatisticas.Util</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

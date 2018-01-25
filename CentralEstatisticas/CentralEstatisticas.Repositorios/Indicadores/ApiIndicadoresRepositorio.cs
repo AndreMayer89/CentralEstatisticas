@@ -1,4 +1,5 @@
 ﻿using CentralEstatisticas.Entidades.Dto;
+using CentralEstatisticas.Entidades.Dto.IndicadorNegocio;
 using System;
 using System.Collections.Generic;
 

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 
-namespace CentralEstatisticas.Entidades.Dto
+namespace CentralEstatisticas.Entidades.Dto.IndicadorTecnico
 {
-    public class ResultadoIndicadoresDto : SaidaWebApiBaseDto
+    public class ResultadoIndicadoresDto
     {
-        public string NomeSistema { get; set; }
         public List<IndicadorDto> Indicadores { get; set; }
 
         public ResultadoIndicadoresDto()
