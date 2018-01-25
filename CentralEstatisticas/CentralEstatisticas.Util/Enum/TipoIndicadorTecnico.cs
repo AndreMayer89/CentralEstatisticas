@@ -11,7 +11,8 @@ namespace CentralEstatisticas.Util.Enum
         public static readonly TipoIndicadorTecnico QtdVulnerabilidades = new TipoIndicadorTecnico(4, "Vulnerabilities");
         public static readonly TipoIndicadorTecnico QtdCodeSmells = new TipoIndicadorTecnico(5, "Code Smells");
         public static readonly TipoIndicadorTecnico CoberturaDeCodigo = new TipoIndicadorTecnico(6, "% Code Coverage");
-        public static readonly TipoIndicadorTecnico CodigoDuplicado = new TipoIndicadorTecnico(7, "% Duplications");
+        public static readonly TipoIndicadorTecnico DiasDebitoTecnico = new TipoIndicadorTecnico(7, "Technical Debt (d)");
+        public static readonly TipoIndicadorTecnico CodigoDuplicado = new TipoIndicadorTecnico(8, "% Duplications");
 
         public int Id { get; private set; }
         public string Nome { get; private set; }
@@ -24,14 +25,16 @@ namespace CentralEstatisticas.Util.Enum
 
         public static List<TipoIndicadorTecnico> ListarTodos()
         {
-            List<TipoIndicadorTecnico> lista = new List<TipoIndicadorTecnico>();
-            lista.Add(LinhasDeCodigo);
-            lista.Add(QtdTestesUnitarios);
-            lista.Add(QtdBugs);
-            lista.Add(QtdVulnerabilidades);
-            lista.Add(QtdCodeSmells);
-            lista.Add(CoberturaDeCodigo);
-            lista.Add(CodigoDuplicado);
+            List<TipoIndicadorTecnico> lista = new List<TipoIndicadorTecnico>
+            {
+                LinhasDeCodigo,
+                QtdTestesUnitarios,
+                QtdBugs,
+                QtdVulnerabilidades,
+                QtdCodeSmells,
+                CoberturaDeCodigo,
+                CodigoDuplicado
+            };
             return lista;
         }
 
