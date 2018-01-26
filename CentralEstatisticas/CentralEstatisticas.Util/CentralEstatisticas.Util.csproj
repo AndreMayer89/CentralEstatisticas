@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\CeCache.cs" />
+    <Compile Include="Cache\CeCacheBase.cs" />
+    <Compile Include="Cache\CeCacheHttpRuntime.cs" />
+    <Compile Include="CentralEstatisticasException.cs" />
     <Compile Include="Conexao\Conexao.cs" />
+    <Compile Include="ConfigCentralEstatisticas.cs" />
     <Compile Include="ContextoCentral.cs" />
     <Compile Include="Conexao\ConexaoBase.cs" />
     <Compile Include="Conexao\ControladorConexao.cs" />
@@ -51,5 +57,6 @@
     <Compile Include="Enum\TipoIndicadorTecnico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
