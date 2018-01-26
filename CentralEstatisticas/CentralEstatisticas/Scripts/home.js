@@ -3,8 +3,8 @@
         $(this).parent().children('ul.tree').toggle(300);
     });
 
-    $(document).on('click', '', function () {
-
+    $(document).on('click', '.item-menu-sistema', function () {
+        carregarIndicadoresTecnicos($(this).attr('data-id-sistema'));
     });
 });
 
@@ -19,7 +19,7 @@ function carregarIndicadoresTecnicos(idSistema) {
             var listaValores = [];
             for (var j = 0; j < indicadorIteracao.Valores.length; j++) {
                 var valorIteracao = indicadorIteracao.Valores[j];
-                listaDatas.push(valorIteracao.Data);
+                listaDatas.push(valorIteracao.DataString);
                 listaValores.push(valorIteracao.Valor);
             }
             var componenteIndicador = $('.template-indicador .indicador').clone();

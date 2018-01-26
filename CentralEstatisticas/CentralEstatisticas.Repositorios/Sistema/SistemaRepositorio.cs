@@ -27,7 +27,7 @@ namespace CentralEstatisticas.Repositorios.Sistema
                     Id = 2,
                     Empresa = "Localiza",
                     Area = "Operações",
-                    Nome = "Compra Peça",
+                    Nome = "Núcleo Manutenção e Compra Peça",
                     UrlBase = "https://wapps.localiza.com/Manutencao/OP.ManutencaoCarro.CompraPecas/",
                     UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/OP.ManutencaoCarro.CompraPecas/",
                     UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/OP.ManutencaoCarro.CompraPecas/",
@@ -55,18 +55,6 @@ namespace CentralEstatisticas.Repositorios.Sistema
                     UrlBase = "https://wapps.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor/",
                     UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor/",
                     UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/OP.ManutencaoCarro.AdministracaoFornecedor/",
-                    RotaApiIndicadores = "api/indicadores/obter",
-                    Ativo = true
-                },
-                new SistemaEntidade
-                {
-                    Id = 5,
-                    Empresa = "Localiza",
-                    Area = "Operações",
-                    Nome = "Núcleo Manutenção",
-                    UrlBase = "https://wapps.localiza.com/Manutencao/NucleoManutencao/",
-                    UrlBaseHom = "https://wapps-h.localiza.com/Manutencao/NucleoManutencao/",
-                    UrlBaseDev = "https://wapps-d.localiza.com/Manutencao/NucleoManutencao/",
                     RotaApiIndicadores = "api/indicadores/obter",
                     Ativo = true
                 }

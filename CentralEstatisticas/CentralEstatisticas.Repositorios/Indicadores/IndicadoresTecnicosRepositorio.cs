@@ -18,7 +18,7 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             {
                 return ListarIndicadoresMonitoramento();
             }
-            else if (id == 2 || id == 5)
+            else if (id == 2)
             {
                 return ListarIndicadoresManutencaoECompraPeca();
             }
@@ -54,14 +54,6 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             lista.AddRange(CriarIndicadoresData(2, new DateTime(2017, 12, 16), 51182, 231, 2, 3, 192, 47.85, 7, 2.5));
             lista.AddRange(CriarIndicadoresData(2, new DateTime(2018, 1, 1), 51182, 231, 2, 3, 192, 47.85, 7, 2.5));
             lista.AddRange(CriarIndicadoresData(2, new DateTime(2018, 1, 15), 51426, 231, 2, 3, 193, 51.15, 7, 2.5));
-
-
-            lista.AddRange(CriarIndicadoresData(5, new DateTime(2017, 11, 1), 46239, 217, 2, 1, 170, 45.35, 6, 2.9));
-            lista.AddRange(CriarIndicadoresData(5, new DateTime(2017, 11, 16), 50649, 233, 2, 3, 182, 47.84, 7, 2.6));
-            lista.AddRange(CriarIndicadoresData(5, new DateTime(2017, 12, 1), 50993, 233, 2, 3, 192, 45.36, 7, 2.5));
-            lista.AddRange(CriarIndicadoresData(5, new DateTime(2017, 12, 16), 51182, 231, 2, 3, 192, 47.85, 7, 2.5));
-            lista.AddRange(CriarIndicadoresData(5, new DateTime(2018, 1, 1), 51182, 231, 2, 3, 192, 47.85, 7, 2.5));
-            lista.AddRange(CriarIndicadoresData(5, new DateTime(2018, 1, 15), 51426, 231, 2, 3, 193, 51.15, 7, 2.5));
             return lista;
         }
 

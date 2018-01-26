@@ -12,6 +12,7 @@ namespace CentralEstatisticas.Entidades.Dto.IndicadorTecnico
         public class ValorIndicador
         {
             public DateTime Data { get; set; }
+            public string DataString { get { return Data.ToString("dd/MM/yyyy"); } }
             public object Valor { get; set; }
         }
     }
