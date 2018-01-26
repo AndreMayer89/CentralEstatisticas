@@ -1,1 +1,44 @@
-﻿
+﻿@model CentralEstatisticas.Models.HomeModel
+<div class="col-md-3">
+    <div class="well menu-lateral-sistemas" style="">
+        <div style="">
+            <ul class="nav nav-list">
+                <li>
+                    @foreach (var empresa in Model.Empresas)
+                    {
+                        <label class="tree-toggler nav-header">@empresa.Nome</label>
+                        foreach (var area in empresa.Areas)
+                        {
+                            <ul class="nav nav-list tree">
+                                <li>
+                                    <label class="tree-toggler nav-header">@area.Nome</label>
+                                    <ul class="nav nav-list tree">
+                                        @foreach (var sistema in area.Sistemas)
+                                        {
+                                            <li><a href="#">@sistema.Nome</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-9">
+    <ul class="nav nav-tabs menu-tipo-indicador">
+        <li class="active"><a data-toggle="tab" href="#tab-negocio">Indicadores Negócio</a></li>
+        <li><a data-toggle="tab" href="#tab-tecnico">Indicadores Técnicos</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="tab-negocio" class="tab-pane in active">
+
+        </div>
+        <div id="tab-tecnico" class="tab-pane">
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Scripts/home.js"></script>

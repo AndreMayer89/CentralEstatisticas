@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using CentralEstatisticas.Models;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace CentralEstatisticas.Controllers
 {
@@ -6,7 +8,31 @@ namespace CentralEstatisticas.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            HomeModel model = new HomeModel()
+            {
+                Empresas = new List<HomeModel.Empresa>
+                {
+                    new HomeModel.Empresa
+                    {
+                        Nome = "Localiza",
+                        Areas = new List<HomeModel.AreaEmpresa>
+                        {
+                            new HomeModel.AreaEmpresa
+                            {
+                                Nome = "Operações",
+                                Sistemas = new List<HomeModel.Sistema>
+                                {
+                                    new HomeModel.Sistema { Id = 1, Nome = "Monitoramento" },
+                                    new HomeModel.Sistema { Id = 2, Nome = "Núcleo Manutenção e Compra Peças" },
+                                    new HomeModel.Sistema { Id = 3, Nome = "Análise Orçamento" },
+                                    new HomeModel.Sistema { Id = 4, Nome = "Administração Fornecedor" }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            return View(model);
         }
     }
 }
