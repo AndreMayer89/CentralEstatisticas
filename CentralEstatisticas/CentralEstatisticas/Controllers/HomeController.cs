@@ -1,4 +1,5 @@
-﻿using CentralEstatisticas.Models;
+﻿using CentralEstatisticas.Business;
+using CentralEstatisticas.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -33,6 +34,12 @@ namespace CentralEstatisticas.Controllers
                 }
             };
             return View(model);
+        }
+
+        [HttpPost]
+        public JsonResult ObterIndicadoresTecnicos(int idSistema)
+        {
+            return Json(new { IndicadoresTecnicos = new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema) });
         }
     }
 }

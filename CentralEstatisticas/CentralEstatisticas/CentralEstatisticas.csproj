@@ -179,6 +179,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\home.js" />
+    <Content Include="Scripts\script-geral-ajax.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

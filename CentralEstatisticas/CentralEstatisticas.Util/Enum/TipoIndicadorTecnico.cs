@@ -33,6 +33,7 @@ namespace CentralEstatisticas.Util.Enum
                 QtdVulnerabilidades,
                 QtdCodeSmells,
                 CoberturaDeCodigo,
+                DiasDebitoTecnico,
                 CodigoDuplicado
             };
             return lista;

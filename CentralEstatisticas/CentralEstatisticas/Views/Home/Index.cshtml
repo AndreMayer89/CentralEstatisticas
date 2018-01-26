@@ -37,8 +37,24 @@
 
         </div>
         <div id="tab-tecnico" class="tab-pane">
-
+            
         </div>
     </div>
 </div>
-<script type="text/javascript" src="~/Scripts/home.js"></script>
+
+<div class="template-indicador hide">
+    <div class="indicador">
+        <div class="col-md-2">
+            <label data-nome-indicador></label>
+        </div>
+        <div class="col-md-10">
+            <canvas data-canvas-grafico width="400" height="100"></canvas>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/home.js"></script>
+    <script type="text/javascript">
+        var urlObterIndicadoresTecnicos = '@Url.Action("ObterIndicadoresTecnicos", "Home")';
+    </script>
+}

@@ -21,12 +21,16 @@ namespace CentralEstatisticas.Business
             var retorno = new ResultadoIndicadoresDto();
             foreach (var indicador in listaIndicadores)
             {
-                if (!retorno.Indicadores.Any(i => i.Data == indicador.Data))
+                if (!retorno.Indicadores.Any(i => i.Tipo.Id == indicador.IdTipo))
                 {
-                    retorno.Indicadores.Add(new IndicadorDto { Data = indicador.Data, Valores = new List<IndicadorDto.ValorIndicador>() });
+                    retorno.Indicadores.Add(new IndicadorDto
+                    {
+                        Tipo = TipoIndicadorTecnico.Obter(indicador.IdTipo),
+                        Valores = new List<IndicadorDto.ValorIndicador>()
+                    });
                 }
-                var indicadorRetorno = retorno.Indicadores.FirstOrDefault(i => i.Data == indicador.Data);
-                indicadorRetorno.Valores.Add(new IndicadorDto.ValorIndicador { Tipo = TipoIndicadorTecnico.Obter(indicador.IdTipo), Valor = indicador.Valor });
+                var indicadorRetorno = retorno.Indicadores.FirstOrDefault(i => i.Tipo.Id == indicador.IdTipo);
+                indicadorRetorno.Valores.Add(new IndicadorDto.ValorIndicador { Data = indicador.Data, Valor = indicador.Valor });
             }
             return retorno;
         }

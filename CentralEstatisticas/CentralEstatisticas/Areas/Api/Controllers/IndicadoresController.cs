@@ -4,32 +4,20 @@ using System.Web.Http;
 
 namespace CentralEstatisticas.Areas.Api.Controllers
 {
-    [RoutePrefix("api/indicadores")]
+    [RoutePrefix("api/v1/indicadores")]
     public class IndicadoresController : BaseApiController
     {
         [HttpGet]
-        [Route("todos")]
-        public object ObterIndicadores(int idSistema, DateTime dataInicio, DateTime dataFim)
+        [Route("")]
+        public object ObterIndicadores(int idSistema, DateTime? dataInicio, DateTime? dataFim)
         {
-            return new
+            dynamic retorno = new { };
+            if (dataInicio.HasValue && dataFim.HasValue)
             {
-                IndicadoresTecnicos = new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema),
-                IndicadoresNegocio = new IndicadoresNegocioBusiness().ObterIndicadoresNoPeriodo(dataInicio, dataFim, idSistema)
-            };
-        }
-
-        [HttpGet]
-        [Route("tecnicos")]
-        public object ObterIndicadoresTecnicos(int idSistema)
-        {
-            return new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema);
-        }
-
-        [HttpGet]
-        [Route("negocio")]
-        public object ObterIndicadoresNegocio(int idSistema, DateTime dataInicio, DateTime dataFim)
-        {
-            return new IndicadoresNegocioBusiness().ObterIndicadoresNoPeriodo(dataInicio, dataFim, idSistema);
+                retorno.IndicadoresNegocio = new IndicadoresNegocioBusiness().ObterIndicadoresNoPeriodo(dataInicio.Value, dataFim.Value, idSistema);
+            }
+            retorno.IndicadoresTecnicos = new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema);
+            return retorno;
         }
     }
 }
