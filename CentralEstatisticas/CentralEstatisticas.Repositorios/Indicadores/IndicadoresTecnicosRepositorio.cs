@@ -4,7 +4,7 @@ using CentralEstatisticas.Util.Enum;
 using System;
 using System.Collections.Generic;
 
-namespace CentralEstatisticas.Repositorios
+namespace CentralEstatisticas.Repositorios.Indicadores
 {
     public class IndicadoresTecnicosRepositorio : AdoHelper
     {

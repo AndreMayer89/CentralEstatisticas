@@ -1,7 +1,7 @@
 ﻿using CentralEstatisticas.Entidades;
 using CentralEstatisticas.Entidades.Dto.IndicadorTecnico;
-using CentralEstatisticas.Repositorios;
-using System;
+using CentralEstatisticas.Repositorios.Indicadores;
+using CentralEstatisticas.Repositorios.Sistema;
 using System.Collections.Generic;
 
 namespace CentralEstatisticas.Business

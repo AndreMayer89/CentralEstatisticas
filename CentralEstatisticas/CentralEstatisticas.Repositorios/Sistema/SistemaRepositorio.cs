@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CentralEstatisticas.Repositorios
+namespace CentralEstatisticas.Repositorios.Sistema
 {
     public class SistemaRepositorio
     {

@@ -1,13 +1,12 @@
-﻿using CentralEstatisticas.Entidades.Dto;
-using CentralEstatisticas.Entidades.Dto.IndicadorNegocio;
+﻿using CentralEstatisticas.Entidades.Dto.IndicadorNegocio;
 using System;
 using System.Collections.Generic;
 
 namespace CentralEstatisticas.Repositorios.Indicadores
 {
-    public class ApiIndicadoresRepositorio : ApiBaseRepositorio<ResultadoIndicadoresDto>
+    public class IndicadoresNegocioRepositorio : ApiBaseRepositorio<ResultadoIndicadoresDto>
     {
-        public ApiIndicadoresRepositorio(string urlBase, string rota) : base(urlBase, rota)
+        public IndicadoresNegocioRepositorio(string urlBase, string rota) : base(urlBase, rota)
         {
         }
 

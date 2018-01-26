@@ -1,6 +1,6 @@
 ﻿using CentralEstatisticas.Entidades;
-using CentralEstatisticas.Repositorios;
 using CentralEstatisticas.Repositorios.Indicadores;
+using CentralEstatisticas.Repositorios.Sistema;
 using CentralEstatisticas.Util.Enum;
 using System;
 using System.Configuration;
@@ -20,7 +20,7 @@ namespace CentralEstatisticas.Business
             IndicadoresSistemaEntidade registro = new IndicadoresSistemaEntidade { Sistema = sistema };
             try
             {
-                var resultado = new ApiIndicadoresRepositorio(ObterUrlAmbiente(sistema), sistema.RotaApiIndicadores).Executar(dataInicio, dataFim);
+                var resultado = new IndicadoresNegocioRepositorio(ObterUrlAmbiente(sistema), sistema.RotaApiIndicadores).Executar(dataInicio, dataFim);
                 if (resultado.Sucesso)
                 {
                     registro.ListaIndicadores = resultado.Indicadores.Select(i => new IndicadorEntidade
