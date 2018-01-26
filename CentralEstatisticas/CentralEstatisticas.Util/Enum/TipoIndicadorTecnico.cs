@@ -38,7 +38,7 @@ namespace CentralEstatisticas.Util.Enum
             return lista;
         }
 
-        public TipoIndicadorTecnico Obter(int id)
+        public static TipoIndicadorTecnico Obter(int id)
         {
             return ListarTodos().FirstOrDefault(t => t.Id == id);
         }
