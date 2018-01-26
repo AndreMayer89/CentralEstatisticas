@@ -38,7 +38,12 @@ namespace CentralEstatisticas.Business
             catch (Exception e)
             {
                 registro.TipoErro = TipoErro.NaoTratado;
-                registro.MensagemErro = e.Message;
+                var excecaoMaisInterna = e;
+                while (excecaoMaisInterna.InnerException != null)
+                {
+                    excecaoMaisInterna = excecaoMaisInterna.InnerException;
+                }
+                registro.MensagemErro = excecaoMaisInterna.Message;
             }
             return registro;
         }
