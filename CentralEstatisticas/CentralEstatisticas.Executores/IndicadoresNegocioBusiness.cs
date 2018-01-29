@@ -37,6 +37,15 @@ namespace CentralEstatisticas.Business
             return retorno;
         }
 
+        public void Salvar(int idSistema, DateTime dataInicio, DateTime dataFim, IEnumerable<IndicadorParaSalvarDto> listaIndicadores)
+        {
+            int idMedicao = new IndicadoresNegocioRepositorio().SalvarMedicao(idSistema, dataInicio, dataFim);
+            foreach (var indicador in listaIndicadores)
+            {
+                new IndicadoresNegocioRepositorio().SalvarIndicador(idMedicao, indicador.Nome, indicador.Valor);
+            }
+        }
+
         #region Consulta APIs
 
         public IndicadorNegocioNaDataEntidade ObterIndicadoresNoPeriodo(DateTime dataInicio, DateTime dataFim, int idSistema)

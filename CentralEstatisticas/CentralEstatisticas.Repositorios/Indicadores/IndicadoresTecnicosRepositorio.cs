@@ -1,6 +1,7 @@
 ﻿using CentralEstatisticas.Entidades;
 using CentralEstatisticas.Util.Conexao;
 using System.Collections.Generic;
+using System;
 
 namespace CentralEstatisticas.Repositorios.Indicadores
 {
@@ -30,6 +31,16 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
             parametros.Add("@id_sistema", id, System.Data.DbType.Int32);
             return Query<IndicadorTecnicoEntidade>(SQL_LISTAR_INDICADORES_SISTEMA, parametros);
+        }
+
+        public int SalvarMedicao(int idSistema, DateTime data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SalvarIndicador(int idMedicao, int idTipo, double valor)
+        {
+            throw new NotImplementedException();
         }
     }
 }

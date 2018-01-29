@@ -9,7 +9,7 @@ namespace CentralEstatisticas.Controllers
     {
         public ActionResult Index()
         {
-            var listaSistemasAgrupados = new SistemaBusiness().ListarSistemasAgrupadosPorEmpresaEArea();
+            var listaSistemasAgrupados = new SistemaBusiness().ListarAgrupadosPorEmpresaEArea();
             HomeModel model = new HomeModel();
             foreach (var empresa in listaSistemasAgrupados)
             {
@@ -33,7 +33,7 @@ namespace CentralEstatisticas.Controllers
         {
             return Json(new
             {
-                Sistema = new SistemaBusiness().ObterSistema(idSistema),
+                Sistema = new SistemaBusiness().Obter(idSistema),
                 IndicadoresTecnicos = new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema),
                 IndicadoresNegocio = new IndicadoresNegocioBusiness().ObterIndicadores(idSistema)
             });

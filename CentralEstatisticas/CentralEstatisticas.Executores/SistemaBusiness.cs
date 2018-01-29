@@ -9,7 +9,7 @@ namespace CentralEstatisticas.Business
 {
     public class SistemaBusiness
     {
-        public IEnumerable<EmpresaDto> ListarSistemasAgrupadosPorEmpresaEArea()
+        public IEnumerable<EmpresaDto> ListarAgrupadosPorEmpresaEArea()
         {
             IEnumerable<SistemaEntidade> listaSistemas = new SistemaRepositorio().ListarTodos();
             List<EmpresaDto> listaRetorno = new List<EmpresaDto>();
@@ -30,9 +30,14 @@ namespace CentralEstatisticas.Business
             return listaRetorno;
         }
 
-        public SistemaEntidade ObterSistema(int idSistema)
+        public SistemaEntidade Obter(int idSistema)
         {
             return new SistemaRepositorio().ObterSistema(idSistema);
+        }
+
+        public int Salvar(int? idSistema, string empresa, string area, string nome, int idUsuarioResponsavel, bool ativo)
+        {
+            return new SistemaRepositorio().Salvar(idSistema, empresa, area, nome, null, null, null, null, idUsuarioResponsavel, ativo);
         }
     }
 }

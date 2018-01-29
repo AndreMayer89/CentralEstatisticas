@@ -2,6 +2,7 @@
 using CentralEstatisticas.Entidades.Dto.IndicadorTecnico;
 using CentralEstatisticas.Repositorios.Indicadores;
 using CentralEstatisticas.Repositorios.Sistema;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,6 +34,15 @@ namespace CentralEstatisticas.Business
                 indicadorRetorno.Valores.Add(new IndicadorDashboardDto.ValorIndicador { Data = indicador.Data, Valor = indicador.Valor });
             }
             return retorno;
+        }
+
+        public void Salvar(int idSistema, DateTime data, IEnumerable<IndicadorParaSalvarDto> listaIndicadores)
+        {
+            int idMedicao = new IndicadoresTecnicosRepositorio().SalvarMedicao(idSistema, data);
+            foreach (var indicador in listaIndicadores)
+            {
+                new IndicadoresTecnicosRepositorio().SalvarIndicador(idMedicao, indicador.IdTipo, indicador.Valor);
+            }
         }
     }
 }

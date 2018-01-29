@@ -34,5 +34,15 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             parametros.Add("@id_sistema", id, System.Data.DbType.Int32);
             return Query<IndicadorNegocioEntidade>(SQL_LISTAR_INDICADORES_SISTEMA, parametros);
         }
+
+        public int SalvarMedicao(int idSistema, DateTime dataInicio, DateTime dataFim)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SalvarIndicador(int idMedicao, string nome, double valor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using CentralEstatisticas.Business;
-using System;
 using System.Web.Http;
 
 namespace CentralEstatisticas.Areas.Api.Controllers
@@ -9,18 +8,11 @@ namespace CentralEstatisticas.Areas.Api.Controllers
     {
         [HttpGet]
         [Route("")]
-        public object ObterIndicadores(int idSistema, DateTime? dataInicio, DateTime? dataFim)
+        public object ObterIndicadores(int idSistema)
         {
-            if (dataInicio.HasValue && dataFim.HasValue)
-            {
-                return new
-                {
-                    IndicadoresNegocio = new IndicadoresNegocioBusiness().ObterIndicadoresNoPeriodo(dataInicio.Value, dataFim.Value, idSistema),
-                    IndicadoresTecnicos = new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema)
-                };
-            }
             return new
             {
+                IndicadoresNegocio = new IndicadoresNegocioBusiness().ObterIndicadores(idSistema),
                 IndicadoresTecnicos = new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema)
             };
         }
