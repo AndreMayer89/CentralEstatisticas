@@ -30,7 +30,11 @@ namespace CentralEstatisticas.Controllers
         [HttpPost]
         public JsonResult ObterIndicadoresTecnicos(int idSistema)
         {
-            return Json(new { IndicadoresTecnicos = new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema) });
+            return Json(new
+            {
+                Sistema = new SistemaBusiness().ObterSistema(idSistema),
+                IndicadoresTecnicos = new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema)
+            });
         }
     }
 }

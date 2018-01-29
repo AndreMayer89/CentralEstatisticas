@@ -21,6 +21,7 @@ textarea {
 .menu-lateral-sistemas {
     width: 100%;
     padding: 8px 0;
+    background-color: #FFFFFF;
 }
 
     .menu-lateral-sistemas > div {
@@ -35,6 +36,25 @@ textarea {
 
         .menu-lateral-sistemas > div .tree-toggler {
             cursor: pointer;
+        }
+
+    .menu-lateral-sistemas .nav-header {
+        color: #000000;
+        font-size: 18px;
+    }
+
+    .menu-lateral-sistemas .nav > li > a {
+        color: #524da0;
+        font-weight: bold;
+    }
+
+        .menu-lateral-sistemas .nav > li > a:hover {
+            background-color: #FFFFFF;
+        }
+
+        .menu-lateral-sistemas .nav > li > a.active {
+            background-color: #FFFFFF;
+            color: #00BBD3;
         }
 
 .menu-tipo-indicador {

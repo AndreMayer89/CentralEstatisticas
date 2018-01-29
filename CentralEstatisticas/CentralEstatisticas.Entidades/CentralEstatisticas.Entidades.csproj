@@ -47,8 +47,7 @@
     <Compile Include="Dto\Sistema\AreaDto.cs" />
     <Compile Include="Dto\Sistema\EmpresaDto.cs" />
     <Compile Include="Dto\Sistema\SistemaDto.cs" />
-    <Compile Include="IndicadorEntidade.cs" />
-    <Compile Include="IndicadoresSistemaEntidade.cs" />
+    <Compile Include="IndicadorNegocioNaDataEntidade.cs" />
     <Compile Include="Dto\IndicadorTecnico\ResultadoIndicadoresDto.cs" />
     <Compile Include="IndicadorTecnicoEntidade.cs" />
     <Compile Include="SistemaEntidade.cs" />

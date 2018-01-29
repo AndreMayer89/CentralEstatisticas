@@ -3,6 +3,7 @@ using CentralEstatisticas.Entidades.Dto.Sistema;
 using CentralEstatisticas.Repositorios.Sistema;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace CentralEstatisticas.Business
 {
@@ -27,6 +28,11 @@ namespace CentralEstatisticas.Business
                 area.ListaSistemas.Add(new SistemaDto { Id = sistema.Id, Nome = sistema.Nome });
             }
             return listaRetorno;
+        }
+
+        public SistemaEntidade ObterSistema(int idSistema)
+        {
+            return new SistemaRepositorio().ObterSistema(idSistema);
         }
     }
 }

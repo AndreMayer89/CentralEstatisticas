@@ -33,7 +33,9 @@ namespace CentralEstatisticas.Repositorios.Sistema
 
         public SistemaEntidade ObterSistema(int idSistema)
         {
-            return ListarTodos().FirstOrDefault(s => s.Id == idSistema);
+            var parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_sistema", idSistema, System.Data.DbType.Int32);
+            return Query<SistemaEntidade>(SQL_LISTAR + "WHERE id_sistema = @id_sistema ", parametros).FirstOrDefault();
         }
     }
 }

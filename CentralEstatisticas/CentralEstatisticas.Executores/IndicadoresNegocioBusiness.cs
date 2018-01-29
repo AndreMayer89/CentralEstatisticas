@@ -10,20 +10,20 @@ namespace CentralEstatisticas.Business
 {
     public class IndicadoresNegocioBusiness
     {
-        public IndicadoresSistemaEntidade ObterIndicadoresNoPeriodo(DateTime dataInicio, DateTime dataFim, int idSistema)
+        public IndicadorNegocioNaDataEntidade ObterIndicadoresNoPeriodo(DateTime dataInicio, DateTime dataFim, int idSistema)
         {
             return ObterIndicadoresNoPeriodo(dataInicio, dataFim, new SistemaRepositorio().ObterSistema(idSistema));
         }
 
-        public IndicadoresSistemaEntidade ObterIndicadoresNoPeriodo(DateTime dataInicio, DateTime dataFim, SistemaEntidade sistema)
+        public IndicadorNegocioNaDataEntidade ObterIndicadoresNoPeriodo(DateTime dataInicio, DateTime dataFim, SistemaEntidade sistema)
         {
-            IndicadoresSistemaEntidade registro = new IndicadoresSistemaEntidade { Sistema = sistema };
+            IndicadorNegocioNaDataEntidade registro = new IndicadorNegocioNaDataEntidade { Sistema = sistema };
             try
             {
                 var resultado = new IndicadoresNegocioRepositorio(ObterUrlAmbiente(sistema), sistema.RotaApiIndicadores).Executar(dataInicio, dataFim);
                 if (resultado.Sucesso)
                 {
-                    registro.ListaIndicadores = resultado.Indicadores.Select(i => new IndicadorEntidade
+                    registro.ListaIndicadores = resultado.Indicadores.Select(i => new IndicadorNegocioNaDataEntidade.IndicadorEntidade
                     {
                         Nome = i.Nome,
                         Valor = i.Valor
