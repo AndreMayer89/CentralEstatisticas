@@ -29,7 +29,7 @@ namespace CentralEstatisticas.Controllers
         }
 
         [HttpPost]
-        public JsonResult ObterIndicadoresTecnicos(int idSistema, DateTime? dataInicio, DateTime? dataFim)
+        public JsonResult ObterIndicadores(int idSistema, DateTime? dataInicio, DateTime? dataFim)
         {
             return Json(new
             {

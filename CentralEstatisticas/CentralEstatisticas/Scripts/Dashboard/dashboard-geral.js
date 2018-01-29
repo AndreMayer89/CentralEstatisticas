@@ -11,7 +11,7 @@
 });
 
 function carregarInformacoesSistema(idSistema) {
-    chamadaAjaxPost(urlObterIndicadoresTecnicos, {
+    chamadaAjaxPost(urlObterIndicadores, {
         idSistema: idSistema
     }, function (retorno) {
         $('[data-nome-sistema]').text(retorno.Sistema.Nome);

@@ -165,6 +165,9 @@
     <Compile Include="Areas\Api\Controllers\BaseApiController.cs" />
     <Compile Include="Areas\Api\Controllers\IndicadoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IndicadorNegocioController.cs" />
+    <Compile Include="Controllers\IndicadorTecnicoController.cs" />
+    <Compile Include="Controllers\SistemaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -181,7 +184,13 @@
     <Content Include="Scripts\Dashboard\dashboard-geral.js" />
     <Content Include="Scripts\Dashboard\dashboard-indicadores-negocio.js" />
     <Content Include="Scripts\Dashboard\dashboard-indicadores-tecnicos.js" />
+    <Content Include="Scripts\IndicadoresNegocio\indicadores-negocio-cadastro.js" />
+    <Content Include="Scripts\IndicadoresNegocio\indicadores-negocio-lista.js" />
+    <Content Include="Scripts\IndicadoresTecnicos\indicadores-tecnicos-cadastro.js" />
+    <Content Include="Scripts\IndicadoresTecnicos\indicadores-tecnicos-lista.js" />
     <Content Include="Scripts\script-geral-ajax.js" />
+    <Content Include="Scripts\Sistema\sistema-cadastro.js" />
+    <Content Include="Scripts\Sistema\sistema-lista.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -203,6 +212,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Views\IndicadorNegocio\Index.cshtml" />
+    <Content Include="Views\IndicadorTecnico\Index.cshtml" />
+    <Content Include="Views\Sistema\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CentralEstatisticas.Entidades\CentralEstatisticas.Entidades.csproj">
