@@ -16,6 +16,7 @@ function carregarInformacoesSistema(idSistema) {
     }, function (retorno) {
         $('[data-nome-sistema]').text(retorno.Sistema.Nome);
         carregarAbaIndicadoresTecnicos(retorno.IndicadoresTecnicos);
+        carregarAbaIndicadoresNegocio(retorno.IndicadoresNegocio);
     }, null, true, false);
 }
 

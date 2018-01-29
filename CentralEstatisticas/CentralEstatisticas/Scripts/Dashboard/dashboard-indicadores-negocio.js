@@ -6,11 +6,11 @@
         var listaValores = [];
         for (var j = 0; j < indicadorIteracao.Valores.length; j++) {
             var valorIteracao = indicadorIteracao.Valores[j];
-            listaDatas.push(valorIteracao.DataString);
+            listaDatas.push(valorIteracao.DataInicioString + 'a' + valorIteracao.DataFimString);
             listaValores.push(valorIteracao.Valor);
         }
         var componenteIndicador = $('.template-indicador .indicador').clone();
-        componenteIndicador.find('[data-nome-indicador]').text(indicadorIteracao.Tipo);
+        componenteIndicador.find('[data-nome-indicador]').text(indicadorIteracao.Nome);
         var idCanvas = 'grafico-indicador-negocio-' + i;
         componenteIndicador.find('[data-canvas-grafico]').attr('id', idCanvas);
         $('#tab-negocio').append(componenteIndicador);
