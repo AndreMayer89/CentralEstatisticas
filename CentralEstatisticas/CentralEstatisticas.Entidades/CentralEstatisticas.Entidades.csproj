@@ -44,6 +44,9 @@
     <Compile Include="Dto\IndicadorNegocio\ResultadoIndicadoresDto.cs" />
     <Compile Include="Dto\IndicadorTecnico\IndicadorDto.cs" />
     <Compile Include="Dto\SaidaWebApiBaseDto.cs" />
+    <Compile Include="Dto\Sistema\AreaDto.cs" />
+    <Compile Include="Dto\Sistema\EmpresaDto.cs" />
+    <Compile Include="Dto\Sistema\SistemaDto.cs" />
     <Compile Include="IndicadorEntidade.cs" />
     <Compile Include="IndicadoresSistemaEntidade.cs" />
     <Compile Include="Dto\IndicadorTecnico\ResultadoIndicadoresDto.cs" />

@@ -1,6 +1,5 @@
 ﻿using CentralEstatisticas.Business;
 using CentralEstatisticas.Models;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace CentralEstatisticas.Controllers
@@ -9,30 +8,22 @@ namespace CentralEstatisticas.Controllers
     {
         public ActionResult Index()
         {
-            HomeModel model = new HomeModel()
+            var listaSistemasAgrupados = new SistemaBusiness().ListarSistemasAgrupadosPorEmpresaEArea();
+            HomeModel model = new HomeModel();
+            foreach (var empresa in listaSistemasAgrupados)
             {
-                Empresas = new List<HomeModel.Empresa>
+                HomeModel.Empresa empresaModel = new HomeModel.Empresa { Nome = empresa.Nome };
+                foreach (var area in empresa.ListaAreas)
                 {
-                    new HomeModel.Empresa
+                    HomeModel.AreaEmpresa areaModel = new HomeModel.AreaEmpresa { Nome = area.Nome };
+                    foreach (var sistema in area.ListaSistemas)
                     {
-                        Nome = "Localiza",
-                        Areas = new List<HomeModel.AreaEmpresa>
-                        {
-                            new HomeModel.AreaEmpresa
-                            {
-                                Nome = "Operações",
-                                Sistemas = new List<HomeModel.Sistema>
-                                {
-                                    new HomeModel.Sistema { Id = 1, Nome = "Monitoramento" },
-                                    new HomeModel.Sistema { Id = 2, Nome = "Núcleo Manutenção e Compra Peças" },
-                                    new HomeModel.Sistema { Id = 3, Nome = "Análise Orçamento" },
-                                    new HomeModel.Sistema { Id = 4, Nome = "Administração Fornecedor" }
-                                }
-                            }
-                        }
+                        areaModel.Sistemas.Add(new HomeModel.Sistema { Id = sistema.Id, Nome = sistema.Nome });
                     }
+                    empresaModel.Areas.Add(areaModel);
                 }
-            };
+                model.Empresas.Add(empresaModel);
+            }
             return View(model);
         }
 

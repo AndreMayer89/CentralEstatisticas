@@ -12,7 +12,7 @@ namespace CentralEstatisticas.Util.Conexao
     {
         private static ConcurrentDictionary<TipoConexao, ConexaoBaseGF> DICIONARIO_CONEXOES = new ConcurrentDictionary<TipoConexao, ConexaoBaseGF>();
 
-        public static void RegistryConnectionFactory(bool sybase, TipoConexao connEnum, string connString)
+        public static void RegistryConnectionFactory(TipoConexao connEnum)
         {
             DICIONARIO_CONEXOES[connEnum] = CreateNewFactory(connEnum);
         }

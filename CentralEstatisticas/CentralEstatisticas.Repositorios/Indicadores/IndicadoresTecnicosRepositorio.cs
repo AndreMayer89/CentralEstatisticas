@@ -8,29 +8,30 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 {
     public class IndicadoresTecnicosRepositorio : AdoHelper
     {
+        private const string SQL_LISTAR_INDICADORES_SISTEMA = @"
+            SELECT
+	            mit.id_sistema IdSistema,
+	            mit.data Data,
+	            it.id_tipo_indicador_tecnico IdTipo,
+	            tit.nome Tipo,
+	            it.valor Valor
+            FROM 
+	            dbo.medicao_indicador_tecnico mit
+	            INNER JOIN indicador_tecnico it ON mit.id_medicao_indicador_tecnico = it.id_medicao_indicador_tecnico
+	            INNER JOIN tipo_indicador_tecnico tit ON tit.id_tipo_indicador_tecnico = it.id_tipo_indicador_tecnico
+            WHERE
+	            mit.id_sistema = @id_sistema
+            ";
+
         public IndicadoresTecnicosRepositorio() : base(TipoConexao.DbCentral)
         {
         }
 
         public IEnumerable<IndicadorTecnicoEntidade> ListarIndicadores(int id)
         {
-            if (id == 1)
-            {
-                return ListarIndicadoresMonitoramento();
-            }
-            else if (id == 2)
-            {
-                return ListarIndicadoresManutencaoECompraPeca();
-            }
-            else if (id == 3)
-            {
-                return ListarIndicadoresAnaliseOrcamento();
-            }
-            else if (id == 4)
-            {
-                return ListarIndicadoresAdministracaoFornecedor();
-            }
-            return new List<IndicadorTecnicoEntidade>();
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_sistema", id, System.Data.DbType.Int32);
+            return Query<IndicadorTecnicoEntidade>(SQL_LISTAR_INDICADORES_SISTEMA, parametros);
         }
 
         private IEnumerable<IndicadorTecnicoEntidade> ListarIndicadoresMonitoramento()
@@ -66,13 +67,6 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             lista.AddRange(CriarIndicadoresData(3, new DateTime(2017, 12, 16), 24686, 101, 2, 20, 125, 58.16, 4, 0.8));
             lista.AddRange(CriarIndicadoresData(3, new DateTime(2018, 1, 1), 24686, 101, 2, 20, 125, 58.16, 4, 0.8));
             lista.AddRange(CriarIndicadoresData(3, new DateTime(2018, 1, 15), 24686, 101, 2, 20, 125, 58.16, 4, 0.8));
-            return lista;
-        }
-
-        private IEnumerable<IndicadorTecnicoEntidade> ListarIndicadoresAdministracaoFornecedor()
-        {
-            var lista = new List<IndicadorTecnicoEntidade>();
-
             return lista;
         }
 

@@ -6,7 +6,8 @@ namespace CentralEstatisticas.Entidades.Dto.IndicadorTecnico
 {
     public class IndicadorDto
     {
-        public TipoIndicadorTecnico Tipo { get; set; }
+        public int IdTipo { get; set; }
+        public string Tipo { get; set; }
         public List<ValorIndicador> Valores { get; set; }
 
         public class ValorIndicador

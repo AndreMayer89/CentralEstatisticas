@@ -7,6 +7,7 @@ namespace CentralEstatisticas.Entidades
         public int IdSistema { get; set; }
         public DateTime Data { get; set; }
         public int IdTipo { get; set; }
+        public string Tipo { get; set; }
         public double Valor { get; set; }
     }
 }
