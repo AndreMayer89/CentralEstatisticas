@@ -1,7 +1,5 @@
 ﻿using CentralEstatisticas.Entidades;
 using CentralEstatisticas.Util.Conexao;
-using CentralEstatisticas.Util.Enum;
-using System;
 using System.Collections.Generic;
 
 namespace CentralEstatisticas.Repositorios.Indicadores

@@ -40,15 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dto\IndicadorNegocio\IndicadorDto.cs" />
-    <Compile Include="Dto\IndicadorNegocio\ResultadoIndicadoresDto.cs" />
-    <Compile Include="Dto\IndicadorTecnico\IndicadorDto.cs" />
+    <Compile Include="Dto\IndicadorNegocio\IndicadorDashboardDto.cs" />
+    <Compile Include="Dto\IndicadorNegocio\IndicadoresParaDashboardDto.cs" />
+    <Compile Include="Dto\IndicadorTecnico\IndicadorDashboardDto.cs" />
     <Compile Include="Dto\SaidaWebApiBaseDto.cs" />
     <Compile Include="Dto\Sistema\AreaDto.cs" />
     <Compile Include="Dto\Sistema\EmpresaDto.cs" />
     <Compile Include="Dto\Sistema\SistemaDto.cs" />
+    <Compile Include="IndicadorNegocioEntidade.cs" />
     <Compile Include="IndicadorNegocioNaDataEntidade.cs" />
-    <Compile Include="Dto\IndicadorTecnico\ResultadoIndicadoresDto.cs" />
+    <Compile Include="Dto\IndicadorTecnico\IndicadoresParaDashboardDto.cs" />
     <Compile Include="IndicadorTecnicoEntidade.cs" />
     <Compile Include="SistemaEntidade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,32 +1,38 @@
-﻿using CentralEstatisticas.Entidades.Dto.IndicadorNegocio;
-using CentralEstatisticas.Util;
-using CentralEstatisticas.Util.Cache;
+﻿using CentralEstatisticas.Entidades;
+using CentralEstatisticas.Util.Conexao;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CentralEstatisticas.Repositorios.Indicadores
 {
-    public class IndicadoresNegocioRepositorio : ApiBaseRepositorio<ResultadoIndicadoresDto>
+    public class IndicadoresNegocioRepositorio : AdoHelper
     {
-        public IndicadoresNegocioRepositorio(string urlBase, string rota)
-            : base(urlBase, rota)
+        private const string SQL_LISTAR_INDICADORES_SISTEMA = @"
+            SELECT
+	            min.id_sistema IdSistema,
+	            min.data_inicio DataInicio,
+	            min.data_fim DataFim,
+	            ind.nome_indicador_negocio Nome,
+	            ind.valor Valor
+            FROM 
+                dbo.medicao_indicador_negocio min
+                INNER JOIN indicador_negocio ind ON min.id_medicao_indicador_negocio = ind.id_medicao_indicador_negocio
+            WHERE
+	            min.id_sistema = @id_sistema
+            ";
+
+        public IndicadoresNegocioRepositorio() : base(TipoConexao.DbCentral)
         {
         }
 
-        public ResultadoIndicadoresDto Executar(DateTime dataInicio, DateTime dataFim)
+        public IEnumerable<IndicadorNegocioEntidade> ListarIndicadores(int id)
         {
-            return CeCache.Obter().ExecutarFuncaoBusca<ResultadoIndicadoresDto>(
-                new Func<DateTime, DateTime, ResultadoIndicadoresDto>(ExecutarSemCache),
-                ConfigCentralEstatisticas.Cache.PrazoCacheCurto, dataInicio.Date, dataFim.Date.AddDays(1).AddMilliseconds(-1));
-        }
-
-        private ResultadoIndicadoresDto ExecutarSemCache(DateTime dataInicio, DateTime dataFim)
-        {
-            return ExecutarChamadaGet(new Dictionary<string, object>
-            {
-                { "dataInicio", dataInicio },
-                { "dataFim", dataFim }
-            });
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_sistema", id, System.Data.DbType.Int32);
+            return Query<IndicadorNegocioEntidade>(SQL_LISTAR_INDICADORES_SISTEMA, parametros);
         }
     }
 }

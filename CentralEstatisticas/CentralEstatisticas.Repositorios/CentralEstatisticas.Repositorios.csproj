@@ -49,8 +49,9 @@
   <ItemGroup>
     <Compile Include="AdoHelper.cs" />
     <Compile Include="ApiBaseRepositorio.cs" />
-    <Compile Include="Indicadores\IndicadoresTecnicosRepositorio.cs" />
     <Compile Include="Indicadores\IndicadoresNegocioRepositorio.cs" />
+    <Compile Include="Indicadores\IndicadoresTecnicosRepositorio.cs" />
+    <Compile Include="Indicadores\IndicadoresNegocioApiRepositorio.cs" />
     <Compile Include="Sistema\SistemaRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

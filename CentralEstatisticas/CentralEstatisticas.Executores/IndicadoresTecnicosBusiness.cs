@@ -9,28 +9,28 @@ namespace CentralEstatisticas.Business
 {
     public class IndicadoresTecnicosBusiness
     {
-        public ResultadoIndicadoresDto ObterIndicadores(int idSistema)
+        public IndicadoresParaDashboardDto ObterIndicadores(int idSistema)
         {
             return ObterIndicadores(new SistemaRepositorio().ObterSistema(idSistema));
         }
 
-        private ResultadoIndicadoresDto ObterIndicadores(SistemaEntidade sistema)
+        private IndicadoresParaDashboardDto ObterIndicadores(SistemaEntidade sistema)
         {
             IEnumerable<IndicadorTecnicoEntidade> listaIndicadores = new IndicadoresTecnicosRepositorio().ListarIndicadores(sistema.Id);
-            var retorno = new ResultadoIndicadoresDto();
+            var retorno = new IndicadoresParaDashboardDto();
             foreach (var indicador in listaIndicadores)
             {
                 if (!retorno.Indicadores.Any(i => i.IdTipo == indicador.IdTipo))
                 {
-                    retorno.Indicadores.Add(new IndicadorDto
+                    retorno.Indicadores.Add(new IndicadorDashboardDto
                     {
                         Tipo = indicador.Tipo,
                         IdTipo = indicador.IdTipo,
-                        Valores = new List<IndicadorDto.ValorIndicador>()
+                        Valores = new List<IndicadorDashboardDto.ValorIndicador>()
                     });
                 }
                 var indicadorRetorno = retorno.Indicadores.FirstOrDefault(i => i.IdTipo == indicador.IdTipo);
-                indicadorRetorno.Valores.Add(new IndicadorDto.ValorIndicador { Data = indicador.Data, Valor = indicador.Valor });
+                indicadorRetorno.Valores.Add(new IndicadorDashboardDto.ValorIndicador { Data = indicador.Data, Valor = indicador.Valor });
             }
             return retorno;
         }

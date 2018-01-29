@@ -1,5 +1,6 @@
 ﻿using CentralEstatisticas.Business;
 using CentralEstatisticas.Models;
+using System;
 using System.Web.Mvc;
 
 namespace CentralEstatisticas.Controllers
@@ -28,12 +29,13 @@ namespace CentralEstatisticas.Controllers
         }
 
         [HttpPost]
-        public JsonResult ObterIndicadoresTecnicos(int idSistema)
+        public JsonResult ObterIndicadoresTecnicos(int idSistema, DateTime? dataInicio, DateTime? dataFim)
         {
             return Json(new
             {
                 Sistema = new SistemaBusiness().ObterSistema(idSistema),
-                IndicadoresTecnicos = new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema)
+                IndicadoresTecnicos = new IndicadoresTecnicosBusiness().ObterIndicadores(idSistema),
+                IndicadoresNegocio = new IndicadoresNegocioBusiness().ObterIndicadores(idSistema)
             });
         }
     }

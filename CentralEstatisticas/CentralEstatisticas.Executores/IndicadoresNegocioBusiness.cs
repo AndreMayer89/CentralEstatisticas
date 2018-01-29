@@ -1,8 +1,10 @@
 ﻿using CentralEstatisticas.Entidades;
+using CentralEstatisticas.Entidades.Dto.IndicadorNegocio;
 using CentralEstatisticas.Repositorios.Indicadores;
 using CentralEstatisticas.Repositorios.Sistema;
 using CentralEstatisticas.Util.Enum;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 
@@ -10,17 +12,44 @@ namespace CentralEstatisticas.Business
 {
     public class IndicadoresNegocioBusiness
     {
-        public IndicadorNegocioNaDataEntidade ObterIndicadoresNoPeriodo(DateTime dataInicio, DateTime dataFim, int idSistema)
+        public IndicadoresParaDashboardDto ObterIndicadores(int idSistema)
         {
-            return ObterIndicadoresNoPeriodo(dataInicio, dataFim, new SistemaRepositorio().ObterSistema(idSistema));
+            var listaIndicadores = new IndicadoresNegocioRepositorio().ListarIndicadores(idSistema);
+            var retorno = new IndicadoresParaDashboardDto();
+            foreach (var indicador in listaIndicadores)
+            {
+                if (!retorno.Indicadores.Any(i => i.Nome == indicador.Nome))
+                {
+                    retorno.Indicadores.Add(new IndicadorDashboardDto
+                    {
+                        Nome = indicador.Nome,
+                        Valores = new List<IndicadorDashboardDto.ValorIndicador>()
+                    });
+                }
+                var indicadorRetorno = retorno.Indicadores.FirstOrDefault(i => i.Nome == indicador.Nome);
+                indicadorRetorno.Valores.Add(new IndicadorDashboardDto.ValorIndicador
+                {
+                    DataInicio = indicador.DataInicio,
+                    DataFim = indicador.DataFim,
+                    Valor = indicador.Valor
+                });
+            }
+            return retorno;
         }
 
-        public IndicadorNegocioNaDataEntidade ObterIndicadoresNoPeriodo(DateTime dataInicio, DateTime dataFim, SistemaEntidade sistema)
+        #region Consulta APIs
+
+        public IndicadorNegocioNaDataEntidade ObterIndicadoresNoPeriodo(DateTime dataInicio, DateTime dataFim, int idSistema)
+        {
+            return ObterIndicadoresNoPeriodoPelaApi(dataInicio, dataFim, new SistemaRepositorio().ObterSistema(idSistema));
+        }
+
+        public IndicadorNegocioNaDataEntidade ObterIndicadoresNoPeriodoPelaApi(DateTime dataInicio, DateTime dataFim, SistemaEntidade sistema)
         {
             IndicadorNegocioNaDataEntidade registro = new IndicadorNegocioNaDataEntidade { Sistema = sistema };
             try
             {
-                var resultado = new IndicadoresNegocioRepositorio(ObterUrlAmbiente(sistema), sistema.RotaApiIndicadores).Executar(dataInicio, dataFim);
+                var resultado = new IndicadoresNegocioApiRepositorio(ObterUrlAmbiente(sistema), sistema.RotaApiIndicadores).Executar(dataInicio, dataFim);
                 if (resultado.Sucesso)
                 {
                     registro.ListaIndicadores = resultado.Indicadores.Select(i => new IndicadorNegocioNaDataEntidade.IndicadorEntidade
@@ -62,5 +91,7 @@ namespace CentralEstatisticas.Business
             }
             return sistema.UrlBase;
         }
+
+        #endregion
     }
 }

@@ -54,7 +54,6 @@
     <Compile Include="Conexao\FabricaConexao.cs" />
     <Compile Include="Conexao\TipoConexao.cs" />
     <Compile Include="Enum\TipoErro.cs" />
-    <Compile Include="Enum\TipoIndicadorTecnico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

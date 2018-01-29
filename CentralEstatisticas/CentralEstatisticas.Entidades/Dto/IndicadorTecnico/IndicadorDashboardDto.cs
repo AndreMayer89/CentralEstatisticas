@@ -1,10 +1,9 @@
-﻿using CentralEstatisticas.Util.Enum;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace CentralEstatisticas.Entidades.Dto.IndicadorTecnico
 {
-    public class IndicadorDto
+    public class IndicadorDashboardDto
     {
         public int IdTipo { get; set; }
         public string Tipo { get; set; }

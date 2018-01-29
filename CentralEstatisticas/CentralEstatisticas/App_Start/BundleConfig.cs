@@ -9,6 +9,7 @@ namespace CentralEstatisticas
 
         private const string SCRIPT_DASHBOARD_GERAL = "~/Scripts/Dashboard/dashboard-geral.js";
         private const string SCRIPT_DASHBOARD_INDICADORES_TECNICOS = "~/Scripts/Dashboard/dashboard-indicadores-tecnicos.js";
+        private const string SCRIPT_DASHBOARD_INDICADORES_NEGOCIO = "~/Scripts/Dashboard/dashboard-indicadores-negocio.js";
 
         private const string CSS_GERAL_SITE = "~/Content/Site.css";
 
@@ -26,6 +27,7 @@ namespace CentralEstatisticas
             bundles.Add(new ScriptBundle(BUNDLE_JS_DASHBOARD)
                 .Include(SCRIPT_DASHBOARD_GERAL)
                 .Include(SCRIPT_DASHBOARD_INDICADORES_TECNICOS)
+                .Include(SCRIPT_DASHBOARD_INDICADORES_NEGOCIO)
             );
 
             bundles.Add(new StyleBundle(BUNDLE_CSS_GERAL)

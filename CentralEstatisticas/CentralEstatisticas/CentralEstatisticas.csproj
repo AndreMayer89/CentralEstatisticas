@@ -179,6 +179,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\Dashboard\dashboard-geral.js" />
+    <Content Include="Scripts\Dashboard\dashboard-indicadores-negocio.js" />
     <Content Include="Scripts\Dashboard\dashboard-indicadores-tecnicos.js" />
     <Content Include="Scripts\script-geral-ajax.js" />
     <Content Include="Web.config">
