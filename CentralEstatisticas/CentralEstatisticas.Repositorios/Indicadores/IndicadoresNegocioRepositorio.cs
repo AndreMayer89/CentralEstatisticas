@@ -3,8 +3,6 @@ using CentralEstatisticas.Util.Conexao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CentralEstatisticas.Repositorios.Indicadores
 {
@@ -24,6 +22,36 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 	            min.id_sistema = @id_sistema
             ";
 
+        private const string SQL_INSERIR_MEDICAO = @"
+            INSERT INTO dbo.medicao_indicador_negocio
+	            (
+	            id_sistema,
+	            data_inicio,
+	            data_fim
+	            )
+            VALUES 
+	            (
+	            @id_sistema,
+	            @data_inicio,
+	            @data_fim
+	            )
+            ";
+
+        private const string SQL_INSERIR_INDICADOR = @"
+            INSERT INTO dbo.indicador_negocio
+	            (
+	            id_medicao_indicador_negocio,
+	            nome_indicador_negocio,
+	            valor
+	            )
+            VALUES 
+	            (
+	            @id_medicao_indicador_negocio,
+	            @nome_indicador_negocio,
+	            @valor
+	            )
+            ";
+
         public IndicadoresNegocioRepositorio() : base(TipoConexao.DbCentral)
         {
         }
@@ -37,12 +65,20 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 
         public int SalvarMedicao(int idSistema, DateTime dataInicio, DateTime dataFim)
         {
-            throw new NotImplementedException();
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_sistema", idSistema, System.Data.DbType.Int32);
+            parametros.Add("@data_inicio", dataInicio, System.Data.DbType.DateTime);
+            parametros.Add("@data_fim", dataFim, System.Data.DbType.DateTime);
+            return Query<int>(SQL_INSERIR_MEDICAO, parametros).FirstOrDefault();
         }
 
         public void SalvarIndicador(int idMedicao, string nome, double valor)
         {
-            throw new NotImplementedException();
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_medicao_indicador_negocio", idMedicao, System.Data.DbType.Int32);
+            parametros.Add("@nome_indicador_negocio", nome, System.Data.DbType.AnsiString);
+            parametros.Add("@valor", valor, System.Data.DbType.Double);
+            Execute(SQL_INSERIR_INDICADOR, parametros);
         }
     }
 }

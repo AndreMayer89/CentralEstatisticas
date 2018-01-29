@@ -1,7 +1,8 @@
 ﻿using CentralEstatisticas.Entidades;
 using CentralEstatisticas.Util.Conexao;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CentralEstatisticas.Repositorios.Indicadores
 {
@@ -22,6 +23,34 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 	            mit.id_sistema = @id_sistema
             ";
 
+        private const string SQL_INSERIR_MEDICAO = @"
+            INSERT INTO dbo.medicao_indicador_tecnico
+	            (
+	            id_sistema,
+	            data
+	            )
+            VALUES 
+	            (
+	            @id_sistema,
+	            @data
+	            )
+            ";
+
+        private const string SQL_INSERIR_INDICADOR = @"
+            INSERT INTO dbo.indicador_tecnico
+	            (
+	            id_medicao_indicador_tecnico,
+	            id_tipo_indicador_tecnico,
+	            valor
+	            )
+            VALUES 
+	            (
+	            @id_medicao_indicador_tecnico,
+	            @id_tipo_indicador_tecnico,
+	            @valor
+	            )
+            ";
+
         public IndicadoresTecnicosRepositorio() : base(TipoConexao.DbCentral)
         {
         }
@@ -35,12 +64,19 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 
         public int SalvarMedicao(int idSistema, DateTime data)
         {
-            throw new NotImplementedException();
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_sistema", idSistema, System.Data.DbType.Int32);
+            parametros.Add("@data", data, System.Data.DbType.DateTime);
+            return Query<int>(SQL_INSERIR_MEDICAO, parametros).FirstOrDefault();
         }
 
         public void SalvarIndicador(int idMedicao, int idTipo, double valor)
         {
-            throw new NotImplementedException();
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_medicao_indicador_tecnico", idMedicao, System.Data.DbType.Int32);
+            parametros.Add("@id_tipo_indicador_tecnico", idTipo, System.Data.DbType.Int32);
+            parametros.Add("@valor", valor, System.Data.DbType.Double);
+            Execute(SQL_INSERIR_INDICADOR, parametros);
         }
     }
 }
