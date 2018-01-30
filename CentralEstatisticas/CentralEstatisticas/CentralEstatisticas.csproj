@@ -207,7 +207,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Api\Models\" />
   </ItemGroup>
   <ItemGroup>

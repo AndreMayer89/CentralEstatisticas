@@ -12,9 +12,16 @@ namespace CentralEstatisticas.Business
 {
     public class IndicadoresNegocioBusiness
     {
+        private IndicadoresNegocioRepositorio Repositorio { get; set; }
+
+        public IndicadoresNegocioBusiness()
+        {
+            Repositorio = new IndicadoresNegocioRepositorio();
+        }
+
         public IndicadoresParaDashboardDto ObterIndicadores(int idSistema)
         {
-            var listaIndicadores = new IndicadoresNegocioRepositorio().ListarIndicadores(idSistema);
+            var listaIndicadores = Repositorio.ListarIndicadores(idSistema);
             var retorno = new IndicadoresParaDashboardDto();
             foreach (var indicador in listaIndicadores)
             {
@@ -37,13 +44,34 @@ namespace CentralEstatisticas.Business
             return retorno;
         }
 
-        public void Salvar(int idSistema, DateTime dataInicio, DateTime dataFim, IEnumerable<IndicadorParaSalvarDto> listaIndicadores)
+        public IEnumerable<MedicaoIndicadorNegocioDto> ListarMedicoes(int idSistema)
         {
-            int idMedicao = new IndicadoresNegocioRepositorio().SalvarMedicao(idSistema, dataInicio, dataFim);
+            return Repositorio.ListarMedicoes(idSistema).Select(m => new MedicaoIndicadorNegocioDto
+            {
+                DataFim = m.DataFim,
+                DataInicio = m.DataInicio,
+                IdMedicao = m.IdMedicao,
+                IdSistema = m.IdSistema
+            });
+        }
+
+        public void Salvar(int? idMedicao, int idSistema, DateTime dataInicio, DateTime dataFim, IEnumerable<IndicadorParaSalvarDto> listaIndicadores)
+        {
+            if (idMedicao.HasValue)
+            {
+                Repositorio.RemoverIndicadores(idMedicao.Value);
+            }
+            int idMedicaoSalva = Repositorio.SalvarMedicao(idMedicao, idSistema, dataInicio, dataFim);
             foreach (var indicador in listaIndicadores)
             {
-                new IndicadoresNegocioRepositorio().SalvarIndicador(idMedicao, indicador.Nome, indicador.Valor);
+                Repositorio.SalvarIndicador(idMedicaoSalva, indicador.Nome, indicador.Valor);
             }
+        }
+
+        public void RemoverMedicao(int idMedicao)
+        {
+            Repositorio.RemoverIndicadores(idMedicao);
+            Repositorio.RemoverMedicao(idMedicao);
         }
 
         #region Consulta APIs

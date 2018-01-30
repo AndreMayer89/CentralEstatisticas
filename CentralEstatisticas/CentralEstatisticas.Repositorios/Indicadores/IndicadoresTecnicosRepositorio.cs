@@ -34,6 +34,17 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 	            @id_sistema,
 	            @data
 	            )
+            SELECT @@IDENTITY
+            ";
+
+        private const string SQL_ATUALIZAR_MEDICAO = @"
+                UPDATE 
+                    dbo.medicao_indicador_tecnico
+                SET
+                    id_sistema = @id_sistema,
+                    data = @data
+                WHERE
+                    id_medicao_indicador_tecnico = @id_medicao_indicador_tecnico
             ";
 
         private const string SQL_INSERIR_INDICADOR = @"
@@ -51,6 +62,14 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 	            )
             ";
 
+        private const string SQL_REMOVER_INDICADORES_MEDICAO = @"
+            DELETE FROM dbo.indicador_tecnico WHERE id_medicao_indicador_tecnico = @id_medicao_indicador_tecnico
+        ";
+
+        private const string SQL_REMOVER_MEDICAO = @"
+            DELETE FROM dbo.medicao_indicador_tecnico WHERE id_medicao_indicador_tecnico = @id_medicao_indicador_tecnico
+        ";
+
         public IndicadoresTecnicosRepositorio() : base(TipoConexao.DbCentral)
         {
         }
@@ -62,12 +81,21 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             return Query<IndicadorTecnicoEntidade>(SQL_LISTAR_INDICADORES_SISTEMA, parametros);
         }
 
-        public int SalvarMedicao(int idSistema, DateTime data)
+        public int SalvarMedicao(int? idMedicao, int idSistema, DateTime data)
         {
             Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
             parametros.Add("@id_sistema", idSistema, System.Data.DbType.Int32);
             parametros.Add("@data", data, System.Data.DbType.DateTime);
-            return Query<int>(SQL_INSERIR_MEDICAO, parametros).FirstOrDefault();
+            if (idMedicao.HasValue)
+            {
+                parametros.Add("@id_medicao_indicador_tecnico", idMedicao, System.Data.DbType.Int32);
+                Execute(SQL_ATUALIZAR_MEDICAO, parametros);
+                return idMedicao.Value;
+            }
+            else
+            {
+                return Query<int>(SQL_INSERIR_MEDICAO, parametros).FirstOrDefault();
+            }
         }
 
         public void SalvarIndicador(int idMedicao, int idTipo, double valor)
@@ -77,6 +105,26 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             parametros.Add("@id_tipo_indicador_tecnico", idTipo, System.Data.DbType.Int32);
             parametros.Add("@valor", valor, System.Data.DbType.Double);
             Execute(SQL_INSERIR_INDICADOR, parametros);
+        }
+
+        public void RemoverIndicadores(int idMedicao)
+        {
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_medicao_indicador_tecnico", idMedicao, System.Data.DbType.Int32);
+            Execute(SQL_REMOVER_INDICADORES_MEDICAO, parametros);
+        }
+
+        public void RemoverMedicao(int idMedicao)
+        {
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_medicao_indicador_tecnico", idMedicao, System.Data.DbType.Int32);
+            Execute(SQL_REMOVER_MEDICAO, parametros);
+        }
+
+        public IEnumerable<MedicaoIndicadorTecnicoEntidade> ListarMedicoes(int idSistema)
+        {
+            //TODO [André] - Implementar
+            throw new NotImplementedException();
         }
     }
 }

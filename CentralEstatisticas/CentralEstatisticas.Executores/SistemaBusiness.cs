@@ -3,7 +3,6 @@ using CentralEstatisticas.Entidades.Dto.Sistema;
 using CentralEstatisticas.Repositorios.Sistema;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace CentralEstatisticas.Business
 {
@@ -11,7 +10,7 @@ namespace CentralEstatisticas.Business
     {
         public IEnumerable<EmpresaDto> ListarAgrupadosPorEmpresaEArea()
         {
-            IEnumerable<SistemaEntidade> listaSistemas = new SistemaRepositorio().ListarTodos();
+            IEnumerable<SistemaEntidade> listaSistemas = new SistemaRepositorio().ListarTodos().Where(s => s.Ativo);
             List<EmpresaDto> listaRetorno = new List<EmpresaDto>();
             foreach (var sistema in listaSistemas)
             {

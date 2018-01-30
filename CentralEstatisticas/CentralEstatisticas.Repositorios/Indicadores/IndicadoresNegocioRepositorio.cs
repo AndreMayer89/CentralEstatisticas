@@ -1,4 +1,5 @@
 ﻿using CentralEstatisticas.Entidades;
+using CentralEstatisticas.Util;
 using CentralEstatisticas.Util.Conexao;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,18 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 	            @data_inicio,
 	            @data_fim
 	            )
+            SELECT @@IDENTITY
+            ";
+
+        private const string SQL_ATUALIZAR_MEDICAO = @"
+                UPDATE 
+                    dbo.medicao_indicador_negocio
+                SET
+                    id_sistema = @id_sistema,
+                    data_inicio = @data_inicio,
+                    data_fim = @data_fim
+                WHERE
+                    id_medicao_indicador_negocio = @id_medicao_indicador_negocio
             ";
 
         private const string SQL_INSERIR_INDICADOR = @"
@@ -52,6 +65,14 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 	            )
             ";
 
+        private const string SQL_REMOVER_INDICADORES_MEDICAO = @"
+            DELETE FROM dbo.indicador_negocio WHERE id_medicao_indicador_negocio = @id_medicao_indicador_negocio
+        ";
+
+        private const string SQL_REMOVER_MEDICAO = @"
+            DELETE FROM dbo.medicao_indicador_negocio WHERE id_medicao_indicador_negocio = @id_medicao_indicador_negocio
+        ";
+
         public IndicadoresNegocioRepositorio() : base(TipoConexao.DbCentral)
         {
         }
@@ -63,22 +84,51 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             return Query<IndicadorNegocioEntidade>(SQL_LISTAR_INDICADORES_SISTEMA, parametros);
         }
 
-        public int SalvarMedicao(int idSistema, DateTime dataInicio, DateTime dataFim)
+        public int SalvarMedicao(int? idMedicao, int idSistema, DateTime dataInicio, DateTime dataFim)
         {
             Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
             parametros.Add("@id_sistema", idSistema, System.Data.DbType.Int32);
             parametros.Add("@data_inicio", dataInicio, System.Data.DbType.DateTime);
             parametros.Add("@data_fim", dataFim, System.Data.DbType.DateTime);
-            return Query<int>(SQL_INSERIR_MEDICAO, parametros).FirstOrDefault();
+            if (idMedicao.HasValue)
+            {
+                parametros.Add("@id_medicao_indicador_negocio", idMedicao, System.Data.DbType.Int32);
+                Execute(SQL_ATUALIZAR_MEDICAO, parametros);
+                return idMedicao.Value;
+            }
+            else
+            {
+                return Query<int>(SQL_INSERIR_MEDICAO, parametros).FirstOrDefault();
+            }
         }
 
         public void SalvarIndicador(int idMedicao, string nome, double valor)
         {
             Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
             parametros.Add("@id_medicao_indicador_negocio", idMedicao, System.Data.DbType.Int32);
-            parametros.Add("@nome_indicador_negocio", nome, System.Data.DbType.AnsiString);
+            parametros.Add("@nome_indicador_negocio", CentralEstatisticasUtil.Truncar(nome, 100), System.Data.DbType.AnsiString);
             parametros.Add("@valor", valor, System.Data.DbType.Double);
             Execute(SQL_INSERIR_INDICADOR, parametros);
+        }
+
+        public void RemoverIndicadores(int idMedicao)
+        {
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_medicao_indicador_negocio", idMedicao, System.Data.DbType.Int32);
+            Execute(SQL_REMOVER_INDICADORES_MEDICAO, parametros);
+        }
+
+        public void RemoverMedicao(int idMedicao)
+        {
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_medicao_indicador_negocio", idMedicao, System.Data.DbType.Int32);
+            Execute(SQL_REMOVER_MEDICAO, parametros);
+        }
+
+        public IEnumerable<MedicaoIndicadorNegocioEntidade> ListarMedicoes(int idSistema)
+        {
+            //TODO [André] - Implementar
+            throw new NotImplementedException();
         }
     }
 }

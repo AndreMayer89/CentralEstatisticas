@@ -46,6 +46,7 @@
     <Compile Include="Cache\CeCacheBase.cs" />
     <Compile Include="Cache\CeCacheHttpRuntime.cs" />
     <Compile Include="CentralEstatisticasException.cs" />
+    <Compile Include="CentralEstatisticasUtil.cs" />
     <Compile Include="Conexao\Conexao.cs" />
     <Compile Include="ConfigCentralEstatisticas.cs" />
     <Compile Include="ContextoCentral.cs" />

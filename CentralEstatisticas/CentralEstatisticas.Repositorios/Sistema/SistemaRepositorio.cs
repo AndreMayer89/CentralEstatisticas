@@ -1,7 +1,8 @@
 ﻿using CentralEstatisticas.Entidades;
+using CentralEstatisticas.Util;
+using CentralEstatisticas.Util.Conexao;
 using System.Collections.Generic;
 using System.Linq;
-using CentralEstatisticas.Util.Conexao;
 
 namespace CentralEstatisticas.Repositorios.Sistema
 {
@@ -47,6 +48,7 @@ namespace CentralEstatisticas.Repositorios.Sistema
 	            @id_usuario_responsavel,
 	            @ativo
 	            )
+            SELECT @@IDENTITY
             ";
 
         private const string SQL_ATUALIZAR = @"
@@ -79,20 +81,20 @@ namespace CentralEstatisticas.Repositorios.Sistema
         {
             var parametros = new Dapper.DynamicParameters();
             parametros.Add("@id_sistema", idSistema, System.Data.DbType.Int32);
-            return Query<SistemaEntidade>(SQL_LISTAR + "WHERE id_sistema = @id_sistema ", parametros).FirstOrDefault();
+            return Query<SistemaEntidade>(SQL_LISTAR + " WHERE id_sistema = @id_sistema ", parametros).FirstOrDefault();
         }
 
         public int Salvar(int? idSistema, string empresa, string area, string nome, string url, string urlHom, string urlDev,
             string rotaApiIndicadoresNegocio, int idUsuarioResponsavel, bool ativo)
         {
             var parametros = new Dapper.DynamicParameters();
-            parametros.Add("@empresa", empresa, System.Data.DbType.AnsiString);
-            parametros.Add("@area", area, System.Data.DbType.AnsiString);
-            parametros.Add("@nome", nome, System.Data.DbType.AnsiString);
-            parametros.Add("@url_base", url, System.Data.DbType.AnsiString);
-            parametros.Add("@url_hom", urlHom, System.Data.DbType.AnsiString);
-            parametros.Add("@url_dev", urlDev, System.Data.DbType.AnsiString);
-            parametros.Add("@rota_api_indicadores_negocio", rotaApiIndicadoresNegocio, System.Data.DbType.AnsiString);
+            parametros.Add("@empresa", CentralEstatisticasUtil.Truncar(empresa, 100), System.Data.DbType.AnsiString);
+            parametros.Add("@area", CentralEstatisticasUtil.Truncar(area, 100), System.Data.DbType.AnsiString);
+            parametros.Add("@nome", CentralEstatisticasUtil.Truncar(nome, 100), System.Data.DbType.AnsiString);
+            parametros.Add("@url_base", CentralEstatisticasUtil.Truncar(url, 100), System.Data.DbType.AnsiString);
+            parametros.Add("@url_hom", CentralEstatisticasUtil.Truncar(urlHom, 100), System.Data.DbType.AnsiString);
+            parametros.Add("@url_dev", CentralEstatisticasUtil.Truncar(urlDev, 100), System.Data.DbType.AnsiString);
+            parametros.Add("@rota_api_indicadores_negocio", CentralEstatisticasUtil.Truncar(rotaApiIndicadoresNegocio, 100), System.Data.DbType.AnsiString);
             parametros.Add("@id_usuario_responsavel", idUsuarioResponsavel, System.Data.DbType.Int32);
             parametros.Add("@ativo", ativo ? 1 : 0, System.Data.DbType.Int32);
             if (idSistema.HasValue)
