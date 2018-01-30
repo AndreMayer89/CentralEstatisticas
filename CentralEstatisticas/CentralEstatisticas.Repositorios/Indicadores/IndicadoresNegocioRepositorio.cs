@@ -73,6 +73,18 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             DELETE FROM dbo.medicao_indicador_negocio WHERE id_medicao_indicador_negocio = @id_medicao_indicador_negocio
         ";
 
+        private const string SQL_LISTAR_MEDICOES = @"
+            SELECT 
+	            id_medicao_indicador_negocio IdMedicao,
+	            id_sistema IdSistema,
+	            data_inicio DataInicio,
+	            data_fim DataFim
+            FROM 
+                dbo.medicao_indicador_negocio
+            WHERE
+                id_sistema = @id_sistema
+        ";
+
         public IndicadoresNegocioRepositorio() : base(TipoConexao.DbCentral)
         {
         }
@@ -127,8 +139,9 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 
         public IEnumerable<MedicaoIndicadorNegocioEntidade> ListarMedicoes(int idSistema)
         {
-            //TODO [André] - Implementar
-            throw new NotImplementedException();
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_sistema", idSistema, System.Data.DbType.Int32);
+            return Query<MedicaoIndicadorNegocioEntidade>(SQL_LISTAR_MEDICOES, parametros);
         }
     }
 }

@@ -70,6 +70,17 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             DELETE FROM dbo.medicao_indicador_tecnico WHERE id_medicao_indicador_tecnico = @id_medicao_indicador_tecnico
         ";
 
+        private const string SQL_LISTAR_MEDICOES = @"
+            SELECT 
+	            id_medicao_indicador_tecnico IdMedicao,
+	            id_sistema IdSistema,
+	            data Data
+            FROM 
+                dbo.medicao_indicador_tecnico
+            WHERE
+                id_sistema = @id_sistema
+        ";
+
         public IndicadoresTecnicosRepositorio() : base(TipoConexao.DbCentral)
         {
         }
@@ -123,8 +134,9 @@ namespace CentralEstatisticas.Repositorios.Indicadores
 
         public IEnumerable<MedicaoIndicadorTecnicoEntidade> ListarMedicoes(int idSistema)
         {
-            //TODO [André] - Implementar
-            throw new NotImplementedException();
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_sistema", idSistema, System.Data.DbType.Int32);
+            return Query<MedicaoIndicadorTecnicoEntidade>(SQL_LISTAR_MEDICOES, parametros);
         }
     }
 }

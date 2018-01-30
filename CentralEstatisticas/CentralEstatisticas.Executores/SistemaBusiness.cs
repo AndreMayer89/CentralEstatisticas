@@ -34,6 +34,11 @@ namespace CentralEstatisticas.Business
             return new SistemaRepositorio().ObterSistema(idSistema);
         }
 
+        public IEnumerable<SistemaEntidade> Listar()
+        {
+            return new SistemaRepositorio().ListarTodos();
+        }
+
         public int Salvar(int? idSistema, string empresa, string area, string nome, int idUsuarioResponsavel, bool ativo)
         {
             return new SistemaRepositorio().Salvar(idSistema, empresa, area, nome, null, null, null, null, idUsuarioResponsavel, ativo);

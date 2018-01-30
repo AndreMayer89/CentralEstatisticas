@@ -214,6 +214,9 @@
     <Content Include="Views\IndicadorNegocio\Index.cshtml" />
     <Content Include="Views\IndicadorTecnico\Index.cshtml" />
     <Content Include="Views\Sistema\Index.cshtml" />
+    <Content Include="Views\IndicadorTecnico\Cadastro.cshtml" />
+    <Content Include="Views\IndicadorNegocio\Cadastro.cshtml" />
+    <Content Include="Views\Sistema\Cadastro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CentralEstatisticas.Entidades\CentralEstatisticas.Entidades.csproj">

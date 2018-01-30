@@ -8,10 +8,24 @@ namespace CentralEstatisticas.Controllers
 {
     public class SistemaController : Controller
     {
-        // GET: Sistema
-        public ActionResult Index()
+        public ViewResult Index()
         {
             return View();
+        }
+
+        public ViewResult Cadastro(int? idSistema)
+        {
+            return View();
+        }
+
+        public JsonResult Listar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public JsonResult Salvar(int? idSistema, string empresa, string area, string nome, int idUsuarioResponsavel, bool ativo)
+        {
+            throw new NotImplementedException();
         }
     }
 }
