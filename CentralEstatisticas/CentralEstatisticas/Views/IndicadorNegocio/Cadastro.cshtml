@@ -1,1 +1,7 @@
 ﻿
+@section scripts {
+    @Scripts.Render("~/bundles/scriptsIndicadoresNegocio")
+    <script type="text/javascript">
+        var urlSalvarMedicao = '@Url.Action("SalvarMedicao", "IndicadorNegocio")';
+    </script>
+}

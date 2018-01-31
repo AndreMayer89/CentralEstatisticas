@@ -54,6 +54,7 @@
     <Compile Include="Indicadores\IndicadoresNegocioApiRepositorio.cs" />
     <Compile Include="Sistema\SistemaRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usuario\UsuarioRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CentralEstatisticas.Entidades\CentralEstatisticas.Entidades.csproj">
@@ -68,5 +69,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

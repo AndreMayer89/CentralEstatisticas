@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using CentralEstatisticas.Business;
 using System.Web.Mvc;
 
 namespace CentralEstatisticas.Controllers
 {
-    public class SistemaController : Controller
+    public class SistemaController : BaseMvcController
     {
+        private SistemaBusiness Business { get; set; }
+
+        public SistemaController()
+        {
+            Business = new SistemaBusiness();
+        }
+
         public ViewResult Index()
         {
             return View();
@@ -18,14 +22,17 @@ namespace CentralEstatisticas.Controllers
             return View();
         }
 
+        [HttpPost]
         public JsonResult Listar()
         {
-            throw new NotImplementedException();
+            return Json(new { Sistemas = Business.Listar() });
         }
 
+        [HttpPost]
         public JsonResult Salvar(int? idSistema, string empresa, string area, string nome, int idUsuarioResponsavel, bool ativo)
         {
-            throw new NotImplementedException();
+            Business.Salvar(idSistema, empresa, area, nome, idUsuarioResponsavel, ativo);
+            return ObterJsonSucessoPadrao();
         }
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="IndicadoresTecnicosBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SistemaBusiness.cs" />
+    <Compile Include="UsuarioBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CentralEstatisticas.Entidades\CentralEstatisticas.Entidades.csproj">

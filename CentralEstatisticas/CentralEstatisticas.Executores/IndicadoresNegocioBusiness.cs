@@ -55,7 +55,8 @@ namespace CentralEstatisticas.Business
             });
         }
 
-        public void Salvar(int? idMedicao, int idSistema, DateTime dataInicio, DateTime dataFim, IEnumerable<IndicadorParaSalvarDto> listaIndicadores)
+        public void SalvarMedicao(int? idMedicao, int idSistema, DateTime dataInicio, DateTime dataFim, 
+            IEnumerable<IndicadorParaSalvarDto> listaIndicadores)
         {
             if (idMedicao.HasValue)
             {

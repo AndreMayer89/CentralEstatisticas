@@ -1,12 +1,20 @@
-﻿using CentralEstatisticas.Entidades.Dto.IndicadorNegocio;
+﻿using CentralEstatisticas.Business;
+using CentralEstatisticas.Entidades.Dto.IndicadorNegocio;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace CentralEstatisticas.Controllers
 {
-    public class IndicadorNegocioController : Controller
+    public class IndicadorNegocioController : BaseMvcController
     {
+        private IndicadoresNegocioBusiness Business { get; set; }
+
+        public IndicadorNegocioController()
+        {
+            Business = new IndicadoresNegocioBusiness();
+        }
+
         public ViewResult Index()
         {
             return View();
@@ -17,20 +25,24 @@ namespace CentralEstatisticas.Controllers
             return View();
         }
 
+        [HttpPost]
         public JsonResult ListarMedicoes(int idSistema)
         {
-            throw new NotImplementedException();
+            return Json(new { Medicoes = Business.ListarMedicoes(idSistema) });
         }
 
+        [HttpPost]
         public JsonResult SalvarMedicao(int? idMedicao, int idSistema, DateTime dataInicio, DateTime dataFim, 
             IEnumerable<IndicadorParaSalvarDto> listaIndicadores)
         {
-            throw new NotImplementedException();
+            Business.SalvarMedicao(idMedicao, idSistema, dataInicio, dataFim, listaIndicadores);
+            return ObterJsonSucessoPadrao();
         }
 
         public JsonResult RemoverMedicao(int idMedicao)
         {
-            throw new NotImplementedException();
+            Business.RemoverMedicao(idMedicao);
+            return ObterJsonSucessoPadrao();
         }
     }
 }

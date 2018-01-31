@@ -1,1 +1,7 @@
 ﻿
+@section scripts {
+    @Scripts.Render("~/bundles/scriptsSistema")
+    <script type="text/javascript">
+        var urlSalvar = '@Url.Action("Salvar", "Sistema")';
+    </script>
+}

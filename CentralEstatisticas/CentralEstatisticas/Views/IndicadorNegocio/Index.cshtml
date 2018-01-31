@@ -2,6 +2,7 @@
 @section scripts {
     @Scripts.Render("~/bundles/scriptsIndicadoresNegocio")
     <script type="text/javascript">
-
+        var urlListarMedicoes = '@Url.Action("ListarMedicoes", "IndicadorNegocio")';
+        var urlRemoverMedicao = '@Url.Action("RemoverMedicao", "IndicadorNegocio")';
     </script>
 }

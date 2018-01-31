@@ -1,1 +1,7 @@
 ﻿
+@section scripts {
+    @Scripts.Render("~/bundles/scriptsIndicadoresTecnicos")
+    <script type="text/javascript">
+        var urlSalvarMedicao = '@Url.Action("SalvarMedicao", "IndicadorTecnico")';
+    </script>
+}
