@@ -20,8 +20,9 @@ namespace CentralEstatisticas.Controllers
             return View();
         }
 
-        public ViewResult Cadastro()
+        public ViewResult Cadastro(int? idMedicao)
         {
+            Business.ObterMedicao(idMedicao);
             return View();
         }
 

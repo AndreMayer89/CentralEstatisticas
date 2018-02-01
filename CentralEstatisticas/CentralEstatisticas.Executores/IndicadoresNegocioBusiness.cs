@@ -55,6 +55,20 @@ namespace CentralEstatisticas.Business
             });
         }
 
+        public MedicaoIndicadorNegocioDto ObterMedicao(int? idMedicao)
+        {
+            var medicaoEntidade = Repositorio.ObterMedicao(idMedicao);
+            MedicaoIndicadorNegocioDto medicao = new MedicaoIndicadorNegocioDto
+            {
+                DataInicio = medicaoEntidade.DataInicio,
+                DataFim = medicaoEntidade.DataFim,
+                IdMedicao = medicaoEntidade.IdMedicao,
+                IdSistema = medicaoEntidade.IdSistema,
+                Indicadores = new List<MedicaoIndicadorNegocioDto.IndicadorMedicaoDto>()
+            };
+            return medicao;
+        }
+
         public void SalvarMedicao(int? idMedicao, int idSistema, DateTime dataInicio, DateTime dataFim, 
             IEnumerable<IndicadorParaSalvarDto> listaIndicadores)
         {

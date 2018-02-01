@@ -85,6 +85,18 @@ namespace CentralEstatisticas.Repositorios.Indicadores
                 id_sistema = @id_sistema
         ";
 
+        private const string SQL_OBTER_MEDICAO = @"
+            SELECT 
+	            id_medicao_indicador_negocio IdMedicao,
+	            id_sistema IdSistema,
+	            data_inicio DataInicio,
+	            data_fim DataFim
+            FROM 
+                dbo.medicao_indicador_negocio
+            WHERE
+                id_medicao_indicador_negocio = @id_medicao_indicador_negocio
+        ";
+
         public IndicadoresNegocioRepositorio() : base(TipoConexao.DbCentral)
         {
         }
@@ -142,6 +154,13 @@ namespace CentralEstatisticas.Repositorios.Indicadores
             Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
             parametros.Add("@id_sistema", idSistema, System.Data.DbType.Int32);
             return Query<MedicaoIndicadorNegocioEntidade>(SQL_LISTAR_MEDICOES, parametros);
+        }
+
+        public MedicaoIndicadorNegocioEntidade ObterMedicao(int? idMedicao)
+        {
+            Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
+            parametros.Add("@id_medicao_indicador_negocio", idMedicao, System.Data.DbType.Int32);
+            return Query<MedicaoIndicadorNegocioEntidade>(SQL_OBTER_MEDICAO, parametros).FirstOrDefault();
         }
     }
 }
