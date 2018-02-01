@@ -24,7 +24,7 @@ namespace CentralEstatisticas.Business
 
         private IndicadoresParaDashboardDto ObterIndicadores(SistemaEntidade sistema)
         {
-            IEnumerable<IndicadorTecnicoEntidade> listaIndicadores = Repositorio.ListarIndicadores(sistema.Id);
+            var listaIndicadores = Repositorio.ListarIndicadores(sistema.Id, null);
             var retorno = new IndicadoresParaDashboardDto();
             foreach (var indicador in listaIndicadores)
             {
@@ -53,7 +53,7 @@ namespace CentralEstatisticas.Business
             });
         }
 
-        public MedicaoIndicadorTecnicoDto ObterMedicao(int? idMedicao)
+        public MedicaoIndicadorTecnicoDto ObterMedicao(int idMedicao)
         {
             var medicaoEntidade = Repositorio.ObterMedicao(idMedicao);
             MedicaoIndicadorTecnicoDto medicao = new MedicaoIndicadorTecnicoDto
@@ -61,7 +61,11 @@ namespace CentralEstatisticas.Business
                 Data = medicaoEntidade.Data,
                 IdMedicao = medicaoEntidade.IdMedicao,
                 IdSistema = medicaoEntidade.IdSistema,
-                Indicadores = new List<MedicaoIndicadorTecnicoDto.IndicadorMedicaoDto>()
+                Indicadores = Repositorio.ListarIndicadores(medicaoEntidade.IdSistema, idMedicao).Select(m => new MedicaoIndicadorTecnicoDto.IndicadorMedicaoDto
+                {
+                    IdTipo = m.IdTipo,
+                    Valor = m.Valor
+                })
             };
             return medicao;
         }

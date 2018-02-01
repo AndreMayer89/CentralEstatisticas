@@ -21,7 +21,7 @@ namespace CentralEstatisticas.Business
 
         public IndicadoresParaDashboardDto ObterIndicadores(int idSistema)
         {
-            var listaIndicadores = Repositorio.ListarIndicadores(idSistema);
+            var listaIndicadores = Repositorio.ListarIndicadores(idSistema, null);
             var retorno = new IndicadoresParaDashboardDto();
             foreach (var indicador in listaIndicadores)
             {
@@ -55,7 +55,7 @@ namespace CentralEstatisticas.Business
             });
         }
 
-        public MedicaoIndicadorNegocioDto ObterMedicao(int? idMedicao)
+        public MedicaoIndicadorNegocioDto ObterMedicao(int idMedicao)
         {
             var medicaoEntidade = Repositorio.ObterMedicao(idMedicao);
             MedicaoIndicadorNegocioDto medicao = new MedicaoIndicadorNegocioDto
@@ -64,7 +64,11 @@ namespace CentralEstatisticas.Business
                 DataFim = medicaoEntidade.DataFim,
                 IdMedicao = medicaoEntidade.IdMedicao,
                 IdSistema = medicaoEntidade.IdSistema,
-                Indicadores = new List<MedicaoIndicadorNegocioDto.IndicadorMedicaoDto>()
+                Indicadores = Repositorio.ListarIndicadores(medicaoEntidade.IdSistema, idMedicao).Select(m => new MedicaoIndicadorNegocioDto.IndicadorMedicaoDto
+                {
+                    Nome = m.Nome,
+                    Valor = m.Valor
+                })
             };
             return medicao;
         }

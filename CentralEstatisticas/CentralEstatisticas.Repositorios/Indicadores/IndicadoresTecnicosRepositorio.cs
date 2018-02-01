@@ -96,11 +96,17 @@ namespace CentralEstatisticas.Repositorios.Indicadores
         {
         }
 
-        public IEnumerable<IndicadorTecnicoEntidade> ListarIndicadores(int id)
+        public IEnumerable<IndicadorTecnicoEntidade> ListarIndicadores(int idSistema, int? idMedicao)
         {
+            string sql = SQL_LISTAR_INDICADORES_SISTEMA;
             Dapper.DynamicParameters parametros = new Dapper.DynamicParameters();
-            parametros.Add("@id_sistema", id, System.Data.DbType.Int32);
-            return Query<IndicadorTecnicoEntidade>(SQL_LISTAR_INDICADORES_SISTEMA, parametros);
+            parametros.Add("@id_sistema", idSistema, System.Data.DbType.Int32);
+            if (idMedicao.HasValue)
+            {
+                sql += " AND id_medicao_indicador_tecnico = @id_medicao_indicador_tecnico ";
+                parametros.Add("@id_medicao_indicador_tecnico", idMedicao, System.Data.DbType.Int32);
+            }
+            return Query<IndicadorTecnicoEntidade>(sql, parametros);
         }
 
         public int SalvarMedicao(int? idMedicao, int idSistema, DateTime data)

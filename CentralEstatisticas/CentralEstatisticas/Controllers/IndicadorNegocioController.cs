@@ -22,7 +22,10 @@ namespace CentralEstatisticas.Controllers
 
         public ViewResult Cadastro(int? idMedicao)
         {
-            Business.ObterMedicao(idMedicao);
+            if (idMedicao.HasValue)
+            {
+                Business.ObterMedicao(idMedicao.Value);
+            }
             return View();
         }
 
