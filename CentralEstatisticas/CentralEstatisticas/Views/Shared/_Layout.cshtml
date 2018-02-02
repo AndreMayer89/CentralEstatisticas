@@ -12,7 +12,9 @@
     @Scripts.Render("~/bundles/scriptsGerais")
 </head>
 <body>
-    @RenderBody()
+    <div class="container">
+        @RenderBody()
+    </div>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -23,7 +23,8 @@ namespace CentralEstatisticas
 
         private const string BUNDLE_JS_GERAL = "~/bundles/scriptsGerais";
         private const string BUNDLE_JS_DASHBOARD = "~/bundles/scriptsDashboard";
-        private const string BUNDLE_JS_SISTEMA = "~/bundles/scriptsSistema";
+        private const string BUNDLE_JS_LISTA_SISTEMA = "~/bundles/scriptsListaSistema";
+        private const string BUNDLE_JS_CADASTRO_SISTEMA = "~/bundles/scriptsCadastroSistema";
         private const string BUNDLE_JS_INDICADORES_NEGOCIO = "~/bundles/scriptsIndicadoresNegocio";
         private const string BUNDLE_JS_INDICADORES_TECNICOS = "~/bundles/scriptsIndicadoresTecnicos";
 
@@ -41,8 +42,11 @@ namespace CentralEstatisticas
                 .Include(SCRIPT_DASHBOARD_INDICADORES_NEGOCIO)
             );
 
-            bundles.Add(new ScriptBundle(BUNDLE_JS_SISTEMA)
+            bundles.Add(new ScriptBundle(BUNDLE_JS_LISTA_SISTEMA)
                 .Include(SCRIPT_SISTEMA_LISTA)
+            );
+
+            bundles.Add(new ScriptBundle(BUNDLE_JS_CADASTRO_SISTEMA)
                 .Include(SCRIPT_SISTEMA_CADASTRO)
             );
 
