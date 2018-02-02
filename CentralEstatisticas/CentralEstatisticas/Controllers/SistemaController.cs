@@ -19,6 +19,10 @@ namespace CentralEstatisticas.Controllers
 
         public ViewResult Cadastro(int? idSistema)
         {
+            if (idSistema.HasValue)
+            {
+                Business.Obter(idSistema.Value);
+            }
             return View();
         }
 
