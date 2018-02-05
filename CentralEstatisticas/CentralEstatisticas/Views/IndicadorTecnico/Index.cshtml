@@ -1,8 +1,47 @@
-﻿
+﻿@model CentralEstatisticas.Models.ListaIndicadoresTecnicosModel
+<div class="row">
+    <form>
+        <div class="form-group col-md-8">
+            <label>Sistema</label>
+            <select class="select2" type="text" data-filtro-sistema>
+                <option value="">Selecione</option>
+                @foreach (var sistema in Model.ListaSistemas)
+                {
+                    <option value="@sistema.Value">@sistema.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-default" type="button" data-filtrar>Filtrar</button>
+            <button class="btn btn-info" type="button" data-novo>Novo</button>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sistema</th>
+                <th>Data</th>
+                <th>Editar</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="template hide" data-id-indicador-tecnico="">
+                <td data-coluna-sistema></td>
+                <td data-coluna-data></td>
+                <td data-coluna-editar><button type="button" class="btn btn-info">Editar</button></td>
+                <td data-coluna-remover><button type="button" class="btn btn-danger">Remover</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 @section scripts {
     @Scripts.Render("~/bundles/scriptsIndicadoresTecnicos")
     <script type="text/javascript">
         var urlListarMedicoes = '@Url.Action("ListarMedicoes", "IndicadorTecnico")';
         var urlRemoverMedicao = '@Url.Action("RemoverMedicao", "IndicadorTecnico")';
+        var urlCadastro = '@Url.Action("Cadastro", "IndicadorTecnico")';
     </script>
 }

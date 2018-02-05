@@ -1,7 +1,9 @@
 ﻿using CentralEstatisticas.Business;
 using CentralEstatisticas.Entidades.Dto.IndicadorTecnico;
+using CentralEstatisticas.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace CentralEstatisticas.Controllers
@@ -17,7 +19,10 @@ namespace CentralEstatisticas.Controllers
 
         public ViewResult Index()
         {
-            return View();
+            return View(new ListaIndicadoresTecnicosModel
+            {
+                ListaSistemas = new SistemaBusiness().Listar().Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.Nome })
+            });
         }
 
         public ViewResult Cadastro(int? idMedicao)
