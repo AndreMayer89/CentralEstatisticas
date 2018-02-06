@@ -5,6 +5,8 @@ namespace CentralEstatisticas
     public static class BundleConfig
     {
         private const string SCRIPT_GERAL_AJAX = "~/Scripts/script-geral-ajax.js";
+        private const string SCRIPT_GERAL_NOTIFICACOES = "~/Scripts/script-geral-notificacoes.js";
+        private const string SCRIPT_GERAL_MODAL_CONFIRMACAO = "~/Scripts/script-geral-modal-confirmacao.js";
 
         private const string SCRIPT_DASHBOARD_GERAL = "~/Scripts/Dashboard/dashboard-geral.js";
         private const string SCRIPT_DASHBOARD_INDICADORES_TECNICOS = "~/Scripts/Dashboard/dashboard-indicadores-tecnicos.js";
@@ -34,6 +36,8 @@ namespace CentralEstatisticas
         {
             bundles.Add(new ScriptBundle(BUNDLE_JS_GERAL)
                 .Include(SCRIPT_GERAL_AJAX)
+                .Include(SCRIPT_GERAL_NOTIFICACOES)
+                .Include(SCRIPT_GERAL_MODAL_CONFIRMACAO)
             );
 
             bundles.Add(new ScriptBundle(BUNDLE_JS_DASHBOARD)

@@ -192,6 +192,8 @@
     <Content Include="Scripts\IndicadoresTecnicos\indicadores-tecnicos-cadastro.js" />
     <Content Include="Scripts\IndicadoresTecnicos\indicadores-tecnicos-lista.js" />
     <Content Include="Scripts\script-geral-ajax.js" />
+    <Content Include="Scripts\script-geral-modal-confirmacao.js" />
+    <Content Include="Scripts\script-geral-notificacoes.js" />
     <Content Include="Scripts\Sistema\sistema-cadastro.js" />
     <Content Include="Scripts\Sistema\sistema-lista.js" />
     <Content Include="Web.config">

@@ -18,15 +18,23 @@
 
 var indicadoresTecnicos = indicadoresTecnicos || {
     filtrar: function () {
-        alert('filtrar');
+        chamadaAjaxPost(urlListarMedicoes, {
+            idSistema: $('select[data-filtro-sistema]').val()
+        }, function (retorno) {
+            alert('filtrar');
+        }, null, true, true);
     },
     criar: function () {
         window.location.href = urlCadastro;
     },
-    editar: function (id) {
-        window.location.href = urlCadastro + '?idMedicao=' + id;
+    editar: function (idMedicao) {
+        window.location.href = urlCadastro + '?idMedicao=' + idMedicao;
     },
-    remover: function (id) {
-        alert('remover');
+    remover: function (idMedicao) {
+        chamadaAjaxPost(urlRemoverMedicao, {
+            idMedicao: idMedicao
+        }, function (retorno) {
+            $('tr[data-id-indicador-tecnico=' + idMedicao + ']').remove();
+        }, null, true, true);
     }
 };
